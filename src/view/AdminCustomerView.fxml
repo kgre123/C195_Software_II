@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminCustomerView">
+   <children>
+      <VBox layoutY="72.0" prefHeight="229.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="customerTable" prefHeight="216.0" prefWidth="600.0">
+              <columns>
+                <TableColumn fx:id="customerIdColumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address" />
+                  <TableColumn fx:id="postalCodeColumn" prefWidth="75.0" text="Postal Code" />
+                  <TableColumn fx:id="phoneNumberColumn" prefWidth="96.0" text="Phone Number" />
+                  <TableColumn fx:id="flDivisionColumn" prefWidth="112.0" text="First-Level Division" />
+                  <TableColumn fx:id="countryDataColumn" prefWidth="91.0" text="Country Data" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <Button fx:id="addCustomerButton" layoutX="370.0" layoutY="301.0" mnemonicParsing="false" onAction="#onActionAddCustomer" text="Add" />
+      <Button fx:id="modifyCustomerButton" layoutX="435.0" layoutY="301.0" mnemonicParsing="false" onAction="#onActionModifyCustomer" text="Modify" />
+      <Button fx:id="deleteCustomerButton" layoutX="511.0" layoutY="301.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="Delete" />
+      <Button fx:id="exitButton" layoutX="489.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionExitProgram" text="Exit" />
+      <Label fx:id="customerLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="25.0" prefHeight="35.0" prefWidth="600.0" text="Customers">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="415.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionGoBack" text="Back" />
+   </children>
+</AnchorPane>
