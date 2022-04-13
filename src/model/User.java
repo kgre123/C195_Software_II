@@ -1,11 +1,11 @@
-package Model;
+package model;
 
 import javafx.scene.control.Alert;
 
 public class User {
 
-    String userName;
-    String password;
+    private String userName;
+    private String password;
 
     public User(String userName, String password) {
         this.userName = userName;
