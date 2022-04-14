@@ -3,13 +3,21 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminAppointmentView implements Initializable {
+
+    Parent scene;
 
     @FXML
     public Button addButton;
@@ -108,13 +116,37 @@ public class AdminAppointmentView implements Initializable {
 
     }
 
-    public void onActionAddAppointment(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the form to add an appointment
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionAddAppointment(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAddAppointment.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
-    public void OnActionUpdateAppointment(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the form to update an appointment with existing information from the selected appointment
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void OnActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminUpdateAppointment.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void onActionDeleteAppointment(ActionEvent actionEvent) {
+
+
     }
 
     /**
@@ -125,10 +157,21 @@ public class AdminAppointmentView implements Initializable {
         System.exit(0);
     }
 
-    public void onActionShowWeekly(Event event) {
+    /**
+     * This method takes the user to the screen to select a customer or appointment
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionGoBack(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminFirstScreen.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
-    public void onActionGoBack(ActionEvent actionEvent) {
+    public void onActionShowWeekly(Event event) {
     }
 
     public void onActionShowMonthly(Event event) {

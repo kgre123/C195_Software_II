@@ -28,7 +28,7 @@ public class User {
         this.password = password;
     }
 
-    public static void incorrectUserNameorPassword(){
+    public static void incorrectUserNameOrPassword(){
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Incorrect UserName or Password");

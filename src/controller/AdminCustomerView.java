@@ -2,16 +2,24 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminCustomerView implements Initializable {
+
+    Parent scene;
 
     @FXML
     public TableView customerTable;
@@ -60,10 +68,32 @@ public class AdminCustomerView implements Initializable {
 
     }
 
-    public void onActionAddCustomer(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the form to add a customer
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAddCustomer.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
-    public void onActionModifyCustomer(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the form to modify a customer with information from the selected customer
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionModifyCustomer(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminModifyCustomer.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void onActionDeleteCustomer(ActionEvent actionEvent) {
@@ -77,6 +107,17 @@ public class AdminCustomerView implements Initializable {
         System.exit(0);
     }
 
-    public void onActionGoBack(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the screen to select a customer or appointment
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionGoBack(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminFirstScreen.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 }

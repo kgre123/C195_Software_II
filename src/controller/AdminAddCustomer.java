@@ -17,91 +17,60 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminAddAppointment implements Initializable {
+public class AdminAddCustomer implements Initializable {
 
     Parent scene;
 
     @FXML
-    public Label addAppointmentLabel;
-
-    @FXML
-    public Label appointmentIdLabel;
-
-    @FXML
-    public Label titleLabel;
-
-    @FXML
-    public Label descriptionLabel;
-
-    @FXML
-    public Label locationLabel;
-
-    @FXML
-    public Label contactLabel;
-
-    @FXML
-    public Label typeLabel;
+    public Label addCustomerLabel;
 
     @FXML
     public Label customerIdLabel;
 
     @FXML
-    public Label userIdLabel;
+    public Label nameLabel;
 
     @FXML
-    public TextField appointmentIdText;
+    public Label addressLabel;
 
     @FXML
-    public TextField titleText;
+    public Label postalCodeLabel;
 
     @FXML
-    public TextField descriptionText;
+    public Label phoneNumberLabel;
 
     @FXML
-    public TextField locationText;
+    public Label flDivisionLabel;
 
     @FXML
-    public TextField typeText;
+    public Label countryDataLabel;
 
     @FXML
     public TextField customerIdText;
 
     @FXML
-    public TextField userIdText;
+    public TextField nameText;
 
     @FXML
-    public ComboBox contactComboBox;
+    public TextField addressText;
+
+    @FXML
+    public TextField PostalCodeText;
+
+    @FXML
+    public TextField phoneNumberText;
+
+    @FXML
+    public ComboBox flDivisionComboBox;
+
+    @FXML
+    public ComboBox countryDataComboBox;
 
     @FXML
     public Button addButton;
 
     @FXML
     public Button cancelButton;
-
-    @FXML
-    public Label startDateLabel;
-
-    @FXML
-    public Label endDateLabel;
-
-    @FXML
-    public Label startTimeLabel;
-
-    @FXML
-    public Label endTimeLabel;
-
-    @FXML
-    public TextField startDateText;
-
-    @FXML
-    public TextField endDateText;
-
-    @FXML
-    public TextField startTimeText;
-
-    @FXML
-    public TextField endTimeText;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,7 +81,7 @@ public class AdminAddAppointment implements Initializable {
     }
 
     /**
-     * This method takes the user to the appointment screen with appointment information
+     * This method takes the user to the customer screen with customer information
      *
      * @param actionEvent when the button is clicked
      * @throws IOException error
@@ -120,7 +89,7 @@ public class AdminAddAppointment implements Initializable {
     public void onActionCancel(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAppointmentView.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminCustomerView.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }

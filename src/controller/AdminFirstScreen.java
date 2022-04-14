@@ -2,14 +2,22 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminFirstScreen implements Initializable {
+
+    Parent scene;
 
     @FXML
     public Label welcomeLabel;
@@ -27,10 +35,33 @@ public class AdminFirstScreen implements Initializable {
     public Button exitButton;
 
 
-    public void onActionCustomerScreen(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the customer screen with customer information
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminCustomerView.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
     }
 
-    public void onActionAppointmentScreen(ActionEvent actionEvent) {
+    /**
+     * This method takes the user to the appointment screen with appointment information
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
+    public void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAppointmentView.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @Override
