@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminCustomerView implements Initializable {
+public class CustomerView implements Initializable {
 
     Parent scene;
 
@@ -77,7 +77,7 @@ public class AdminCustomerView implements Initializable {
     public void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAddCustomer.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddCustomer.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -91,7 +91,7 @@ public class AdminCustomerView implements Initializable {
     public void onActionModifyCustomer(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminModifyCustomer.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ModifyCustomer.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -116,7 +116,7 @@ public class AdminCustomerView implements Initializable {
     public void onActionGoBack(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminFirstScreen.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainScreen.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }

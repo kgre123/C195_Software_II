@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminFirstScreen implements Initializable {
+public class MainScreen implements Initializable {
 
     Parent scene;
 
@@ -44,7 +44,7 @@ public class AdminFirstScreen implements Initializable {
     public void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminCustomerView.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerView.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
 
@@ -59,7 +59,7 @@ public class AdminFirstScreen implements Initializable {
     public void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAppointmentView.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }

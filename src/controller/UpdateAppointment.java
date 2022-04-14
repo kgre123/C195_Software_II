@@ -17,12 +17,12 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminAddAppointment implements Initializable {
+public class UpdateAppointment implements Initializable {
 
     Parent scene;
 
     @FXML
-    public Label addAppointmentLabel;
+    public Label updateAppointmentLabel;
 
     @FXML
     public Label appointmentIdLabel;
@@ -73,7 +73,7 @@ public class AdminAddAppointment implements Initializable {
     public ComboBox contactComboBox;
 
     @FXML
-    public Button addButton;
+    public Button updateButton;
 
     @FXML
     public Button cancelButton;
@@ -108,11 +108,11 @@ public class AdminAddAppointment implements Initializable {
 
     }
 
-    public void onActionAdd(ActionEvent actionEvent) {
+    public void onActionUpdate(ActionEvent actionEvent) {
     }
 
     /**
-     * This method takes the user to the appointment screen with appointment information
+     * This method takes the user to the appointment screen
      *
      * @param actionEvent when the button is clicked
      * @throws IOException error
@@ -120,7 +120,7 @@ public class AdminAddAppointment implements Initializable {
     public void onActionCancel(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAppointmentView.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }

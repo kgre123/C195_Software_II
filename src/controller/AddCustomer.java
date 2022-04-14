@@ -17,12 +17,12 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminModifyCustomer implements Initializable {
+public class AddCustomer implements Initializable {
 
     Parent scene;
 
     @FXML
-    public Label modifyCustomerLabel;
+    public Label addCustomerLabel;
 
     @FXML
     public Label customerIdLabel;
@@ -67,7 +67,7 @@ public class AdminModifyCustomer implements Initializable {
     public ComboBox countryDataComboBox;
 
     @FXML
-    public Button modifyButton;
+    public Button addButton;
 
     @FXML
     public Button cancelButton;
@@ -77,7 +77,7 @@ public class AdminModifyCustomer implements Initializable {
 
     }
 
-    public void onActionModify(ActionEvent actionEvent) {
+    public void onActionAdd(ActionEvent actionEvent) {
     }
 
     /**
@@ -89,9 +89,8 @@ public class AdminModifyCustomer implements Initializable {
     public void onActionCancel(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminCustomerView.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerView.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
-
     }
 }

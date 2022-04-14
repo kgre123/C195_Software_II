@@ -4,9 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="503.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TestAppointmentView">
+<AnchorPane prefHeight="503.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentView">
    <children>
-      <Button fx:id="exitButton" layoutX="682.0" layoutY="409.0" mnemonicParsing="false" onAction="#onActionExitProgram" text="Exit" />
+      <Button fx:id="addButton" layoutX="527.0" layoutY="386.0" mnemonicParsing="false" onAction="#onActionAddAppointment" text="Add" />
+      <Button fx:id="updateButton" layoutX="600.0" layoutY="386.0" mnemonicParsing="false" onAction="#OnActionUpdateAppointment" text="Update" />
+      <Button fx:id="deleteButton" layoutX="695.0" layoutY="386.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" text="Delete" />
+      <Button fx:id="exitButton" layoutX="678.0" layoutY="446.0" mnemonicParsing="false" onAction="#onActionExitProgram" text="Exit" />
       <Label fx:id="appointmentsLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="8.0" prefHeight="35.0" prefWidth="800.0" text="Appointments">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -60,6 +63,6 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="backButton" layoutX="572.0" layoutY="409.0" mnemonicParsing="false" onAction="#onActionGoBack" text="Back" />
+      <Button fx:id="backButton" layoutX="574.0" layoutY="446.0" mnemonicParsing="false" onAction="#onActionGoBack" text="Back" />
    </children>
 </AnchorPane>

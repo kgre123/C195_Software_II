@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAddCustomer">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyCustomer">
    <children>
-      <Label fx:id="addCustomerLabel" layoutX="14.0" layoutY="14.0" text="Add Customer">
+      <Label fx:id="modifyCustomerLabel" layoutX="14.0" layoutY="14.0" text="Modify Customer">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -42,7 +42,7 @@
             <ComboBox fx:id="countryDataComboBox" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <Button fx:id="addButton" layoutX="429.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionAdd" text="Add" />
+      <Button fx:id="modifyButton" layoutX="429.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionModify" text="Modify" />
       <Button fx:id="cancelButton" layoutX="512.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionCancel" text="Cancel" />
    </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminAppointmentView implements Initializable {
+public class AppointmentView implements Initializable {
 
     Parent scene;
 
@@ -125,7 +125,7 @@ public class AdminAppointmentView implements Initializable {
     public void onActionAddAppointment(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminAddAppointment.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddAppointment.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -139,7 +139,7 @@ public class AdminAppointmentView implements Initializable {
     public void OnActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminUpdateAppointment.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/UpdateAppointment.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -158,7 +158,7 @@ public class AdminAppointmentView implements Initializable {
     }
 
     /**
-     * This method takes the user to the screen to select a customer or appointment
+     * This method takes the user to the main screen to select a customer or appointment
      *
      * @param actionEvent when the button is clicked
      * @throws IOException error
@@ -166,7 +166,7 @@ public class AdminAppointmentView implements Initializable {
     public void onActionGoBack(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AdminFirstScreen.fxml")));
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainScreen.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
     }

@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminUpdateAppointment">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointment">
    <children>
-      <Label fx:id="updateAppointmentLabel" layoutX="14.0" layoutY="14.0" text="Update Appointment">
+      <Label fx:id="addAppointmentLabel" layoutX="14.0" layoutY="14.0" text="Add Appointment">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -46,7 +46,7 @@
             <ComboBox fx:id="contactComboBox" prefHeight="25.0" prefWidth="335.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="updateButton" layoutX="467.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionUpdate" text="Update" />
+      <Button fx:id="addButton" layoutX="475.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionAdd" text="Add" />
       <Button fx:id="cancelButton" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionCancel" text="Cancel" />
       <GridPane layoutX="87.0" layoutY="290.0" prefHeight="60.0" prefWidth="426.0">
         <columnConstraints>
