@@ -6,10 +6,9 @@ public class User {
 
     private int userId;
     private String userName;
-    private String password;
+    private static String password;
 
-    public User(int userId, String userName, String password) {
-        this.userId = userId;
+    public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }

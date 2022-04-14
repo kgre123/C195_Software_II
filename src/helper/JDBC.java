@@ -10,20 +10,23 @@ public class JDBC {
 
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
-    private static final String ipAddress = "//wgudb.ucertify.com:3306/";
-    private static final String databaseName = "WJ06YG0";
+    private static final String location = "//localhost/";
+    //private static final String ipAddress = "//wgudb.ucertify.com:3306/";
+    private static final String databaseName = "client_schedule";
 
-    private static final String jdbcURL = protocol + vendor + ipAddress + databaseName;
-    //private static final String jdbcURL = protocol + vendor + location + databaseName + "?connectionTimeZone=SERVER";
+    //private static final String jdbcURL = protocol + vendor + ipAddress + databaseName;
+    private static final String jdbcURL = protocol + vendor + location + databaseName + "?connectionTimeZone=SERVER";
     private static final String driver = "com.mysql.cj.jdbc.Driver";
 
-    private static final String username = "U06YG0";
+    private static final String username = "sqlUser";
+    private static final String password = "Passw0rd!";
+
     private static Connection conn = null;
 
     public static Connection startConnection() {
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(jdbcURL,username, User.getPassword());
+            conn = DriverManager.getConnection(jdbcURL,username,password);
             System.out.println("Connection Successful");
         }
         catch(SQLException | ClassNotFoundException e) {

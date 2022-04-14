@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.DBAppointment;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -8,10 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointment;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -38,73 +42,73 @@ public class AppointmentView implements Initializable {
     public Tab weeklyAppointmentsTab;
 
     @FXML
-    public TableView weeklyAppointmentTable;
+    public TableView<Appointment> weeklyAppointmentTable;
 
     @FXML
-    public TableColumn weeklyAppointmentIdColumn;
+    public TableColumn<Appointment, Integer> weeklyAppointmentIdColumn;
 
     @FXML
-    public TableColumn weeklyTitleColumn;
+    public TableColumn<Appointment, String> weeklyTitleColumn;
 
     @FXML
-    public TableColumn weeklyDescriptionColumn;
+    public TableColumn<Appointment, String> weeklyDescriptionColumn;
 
     @FXML
-    public TableColumn weeklyLocationColumn;
+    public TableColumn<Appointment, String> weeklyLocationColumn;
 
     @FXML
-    public TableColumn weeklyContactColumn;
+    public TableColumn<Appointment, Integer> weeklyContactColumn;
 
     @FXML
-    public TableColumn weeklyTypeColumn;
+    public TableColumn<Appointment, String> weeklyTypeColumn;
 
     @FXML
-    public TableColumn weeklyStartColumn;
+    public TableColumn<Appointment, Timestamp> weeklyStartColumn;
 
     @FXML
-    public TableColumn weeklyEndColumn;
+    public TableColumn<Appointment, Timestamp> weeklyEndColumn;
 
     @FXML
-    public TableColumn weeklyCustomerIdColumn;
+    public TableColumn<Appointment, Integer> weeklyCustomerIdColumn;
 
     @FXML
-    public TableColumn weeklyUserIdColumn;
+    public TableColumn<Appointment, Integer> weeklyUserIdColumn;
 
     @FXML
     public Tab monthlyAppointmentsTab;
 
     @FXML
-    public TableView monthlyAppointmentTable;
+    public TableView<Appointment> monthlyAppointmentTable;
 
     @FXML
-    public TableColumn monthlyAppointmentIdColumn;
+    public TableColumn<Appointment, Integer> monthlyAppointmentIdColumn;
 
     @FXML
-    public TableColumn monthlyTitleColumn;
+    public TableColumn<Appointment, String> monthlyTitleColumn;
 
     @FXML
-    public TableColumn monthlyDescriptionColumn;
+    public TableColumn<Appointment, String> monthlyDescriptionColumn;
 
     @FXML
-    public TableColumn monthlyLocationColumn;
+    public TableColumn<Appointment, String> monthlyLocationColumn;
 
     @FXML
-    public TableColumn monthlyContactColumn;
+    public TableColumn<Appointment, Integer> monthlyContactColumn;
 
     @FXML
-    public TableColumn monthlyTypeColumn;
+    public TableColumn<Appointment, String> monthlyTypeColumn;
 
     @FXML
-    public TableColumn monthlyStartColumn;
+    public TableColumn<Appointment, Timestamp> monthlyStartColumn;
 
     @FXML
-    public TableColumn monthlyEndColumn;
+    public TableColumn<Appointment, Timestamp> monthlyEndColumn;
 
     @FXML
-    public TableColumn monthlyCustomerIdColumn;
+    public TableColumn<Appointment, Integer> monthlyCustomerIdColumn;
 
     @FXML
-    public TableColumn monthlyUserIdColumn;
+    public TableColumn<Appointment, Integer> monthlyUserIdColumn;
 
     @FXML
     public Button backButton;
@@ -113,6 +117,19 @@ public class AppointmentView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        weeklyAppointmentTable.setItems(DBAppointment.getAllAppointments());
+        weeklyAppointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        weeklyTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        weeklyDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        weeklyLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        weeklyContactColumn.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        weeklyTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        weeklyStartColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        weeklyEndColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        weeklyCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        weeklyUserIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
 
     }
 

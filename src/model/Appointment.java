@@ -3,6 +3,8 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Timestamp;
+
 public class Appointment {
 
     private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
@@ -12,13 +14,13 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private String startDate;
-    private String endDate;
+    private Timestamp startDate;
+    private Timestamp endDate;
     private int customerId;
     private int userId;
     private int contactId;
 
-    public Appointment(int appointmentId, String title, String description, String location, String type, String startDate, String endDate, int customerId, int userId, int contactId) {
+    public Appointment(int appointmentId, String title, String description, String location, String type, Timestamp startDate, Timestamp endDate, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -104,28 +106,28 @@ public class Appointment {
     /**
      * @return the start date
      */
-    public String getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
     /**
      * @param startDate setter
      */
-    public void setStartDate(String startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
     /**
      * @return the end date
      */
-    public String getEndDate() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
     /**
      * @param endDate setter
      */
-    public void setEndDate(String endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
 
