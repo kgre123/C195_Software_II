@@ -16,13 +16,14 @@ public class Customer {
     private int customerCountryId;
 
 
-    public Customer(int customerId, String customerName, String customerAddress, String customerZip, String customerPhone, int customerDivisionId) {
+    public Customer(int customerId, String customerName, String customerAddress, String customerZip, String customerPhone, int customerDivisionId, int customerCountryId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerZip = customerZip;
         this.customerPhone = customerPhone;
         this.customerDivisionId = customerDivisionId;
+        this.customerCountryId = customerCountryId;
 
     }
 

@@ -1,4 +1,4 @@
-package DAO;
+package dbConnections;
 
 import helper.JDBC;
 import model.Customer;
@@ -14,7 +14,7 @@ public class DBCustomer {
         ObservableList<Customer> clist = FXCollections.observableArrayList();
 
         try{
-            String sql = "SELECT * from customers";
+            String sql = "SELECT customers.Customer_ID, customers.Customer_Name, customers.Address, customers.Postal_Code, customers.Phone, customers.Division_ID, first_level_divisions.Country_ID FROM customers INNER JOIN first_level_divisions ON customers.Division_ID=first_level_divisions.Division_ID";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
@@ -27,7 +27,8 @@ public class DBCustomer {
                 String customerZip = rs.getString("Postal_Code");
                 String customerPhone = rs.getString("Phone");
                 int customerDivisionId = rs.getInt("Division_ID");
-                Customer c = new Customer(customerId,customerName,customerAddress,customerZip,customerPhone,customerDivisionId);
+                int customerCountryId = rs.getInt("Country_ID");
+                Customer c = new Customer(customerId,customerName,customerAddress,customerZip,customerPhone,customerDivisionId,customerCountryId);
 
                 clist.add(c);
             }

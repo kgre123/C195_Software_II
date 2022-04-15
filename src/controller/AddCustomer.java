@@ -1,5 +1,8 @@
 package controller;
 
+import dbConnections.DBCountry;
+import dbConnections.DBDivision;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Country;
+import model.FirstLevelDivision;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,16 +60,16 @@ public class AddCustomer implements Initializable {
     public TextField addressText;
 
     @FXML
-    public TextField PostalCodeText;
+    public TextField postalCodeText;
 
     @FXML
     public TextField phoneNumberText;
 
     @FXML
-    public ComboBox flDivisionComboBox;
+    public ComboBox<FirstLevelDivision> flDivisionComboBox;
 
     @FXML
-    public ComboBox countryDataComboBox;
+    public ComboBox<Country> countryDataComboBox;
 
     @FXML
     public Button addButton;
@@ -75,9 +80,26 @@ public class AddCustomer implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        ObservableList<FirstLevelDivision> dlist = DBDivision.getAllDivisionIds();
+        flDivisionComboBox.setItems(dlist);
+        flDivisionComboBox.setVisibleRowCount(10);
+
+        ObservableList<Country> clist = DBCountry.getAllCountryIds();
+        countryDataComboBox.setItems(clist);
+        countryDataComboBox.setVisibleRowCount(3);
     }
 
     public void onActionAdd(ActionEvent actionEvent) {
+
+        try{
+            String name = nameText.getText();
+            String address = addressText.getText();
+            String zip = postalCodeText.getText();
+            String phone = phoneNumberText.getText();
+        }
+        catch(NumberFormatException e){
+            //ignore
+        }
     }
 
     /**

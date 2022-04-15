@@ -1,5 +1,6 @@
 package controller;
 
+import dbConnections.DBCustomer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,28 +25,28 @@ public class CustomerView implements Initializable {
     Parent scene;
 
     @FXML
-    public TableView customerTable;
+    public TableView<Customer> customerTable;
 
     @FXML
-    public TableColumn customerIdColumn;
+    public TableColumn<Customer, Integer> customerIdColumn;
 
     @FXML
-    public TableColumn nameColumn;
+    public TableColumn<Customer, String> nameColumn;
 
     @FXML
-    public TableColumn addressColumn;
+    public TableColumn<Customer, String> addressColumn;
 
     @FXML
-    public TableColumn postalCodeColumn;
+    public TableColumn<Customer, String> postalCodeColumn;
 
     @FXML
-    public TableColumn phoneNumberColumn;
+    public TableColumn<Customer, String> phoneNumberColumn;
 
     @FXML
-    public TableColumn flDivisionColumn;
+    public TableColumn<Customer, Integer> flDivisionColumn;
 
     @FXML
-    public TableColumn countryDataColumn;
+    public TableColumn<Customer, Integer> countryDataColumn;
 
     @FXML
     public Button addCustomerButton;
@@ -65,6 +68,15 @@ public class CustomerView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        customerTable.setItems(DBCustomer.getAllCustomers());
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("customerZip"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
+        flDivisionColumn.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
+        countryDataColumn.setCellValueFactory(new PropertyValueFactory<>("customerCountryId"));
 
     }
 

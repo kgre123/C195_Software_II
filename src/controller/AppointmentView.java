@@ -1,6 +1,6 @@
 package controller;
 
-import DAO.DBAppointment;
+import dbConnections.DBAppointment;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -118,7 +118,7 @@ public class AppointmentView implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        weeklyAppointmentTable.setItems(DBAppointment.getAllAppointments());
+        weeklyAppointmentTable.setItems(DBAppointment.getAllWeeklyAppointments());
         weeklyAppointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         weeklyTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         weeklyDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -129,6 +129,18 @@ public class AppointmentView implements Initializable {
         weeklyEndColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         weeklyCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         weeklyUserIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+        monthlyAppointmentTable.setItems(DBAppointment.getAllMonthlyAppointments());
+        monthlyAppointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        monthlyTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        monthlyDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        monthlyLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        monthlyContactColumn.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        monthlyTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        monthlyStartColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        monthlyEndColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        monthlyCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        monthlyUserIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
 
     }
