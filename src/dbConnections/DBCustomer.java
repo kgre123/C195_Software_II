@@ -40,5 +40,54 @@ public class DBCustomer {
         return clist;
     }
 
+    public static void addCustomer(String customerName, String customerAddress, String customerZip, String customerPhone, int divisionId) throws SQLException {
+
+        try {
+            String sql = "INSERT into customers (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(NULL, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setString(1, customerName);
+            ps.setString(2, customerAddress);
+            ps.setString(3, customerZip);
+            ps.setString(4, customerPhone);
+            ps.setInt(5, divisionId);
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateCustomer(String customerName, String customerAddress, String customerZip, String customerPhone, int divisionId){
+
+        try{
+            String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setString(1, customerName);
+            ps.setString(2, customerAddress);
+            ps.setString(3, customerZip);
+            ps.setString(4, customerPhone);
+            ps.setInt(5, divisionId);
+            ps.execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void deleteCustomer(int customerId){
+
+        try{
+            String sql = "DELETE FROM customers WHERE Customer_ID = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, customerId);
+            ps.execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 }

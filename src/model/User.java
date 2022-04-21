@@ -65,4 +65,20 @@ public class User {
         alert.setContentText("You have entered incorrect credentials. Please try again!");
         alert.showAndWait();
     }
+
+    public static void blankUsername() {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Username Entered");
+        alert.setContentText("Please enter a username!");
+        alert.showAndWait();
+    }
+
+    public static void blankPassword() {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Password Entered");
+        alert.setContentText("Please enter a password!");
+        alert.showAndWait();
+    }
 }

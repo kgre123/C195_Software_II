@@ -1,11 +1,8 @@
 package model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 public class Customer {
-
-    private static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
     private int customerId;
     private String customerName;
@@ -125,59 +122,11 @@ public class Customer {
         this.customerCountryId = customerCountryId;
     }
 
-    /**
-     * adding a customer to the observable list
-     * @param newCustomer specifies the customer being added
-     */
-    public static void addCustomer(Customer newCustomer) {
-        allCustomers.add(newCustomer);
+    public static void itemSelectError(){
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Items Selected");
+        alert.setContentText("Please select an item to remove!");
+        alert.showAndWait();
     }
-
-    /**
-     * deleting a customer from the observable list
-     * @param selectedCustomer the customer that is being deleted
-     * @return deletes the customer if found
-     */
-    public static boolean deleteCustomer(Customer selectedCustomer) {
-        if(allCustomers.contains(selectedCustomer)){
-            allCustomers.remove(selectedCustomer);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    /**
-     * finding the index of the customers
-     * @param customerId the customer id being searched for
-     * @return index
-     */
-    public static int getCustomerIndex(int customerId){
-
-        for (int i = 0; i < allCustomers.size(); i++) {
-            if (allCustomers.get(i).getCustomerId() == customerId) {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    /**
-     * updating the customer to not create duplicates
-     * @param index index of the customer
-     * @param selectedCustomer the customer that is being searched for
-     */
-    public static void updateCustomer(int index, Customer selectedCustomer) {
-
-        for (int i = 0; i < allCustomers.size(); i++) {
-            if (allCustomers.get(i).getCustomerId() == selectedCustomer.getCustomerId()) {
-                allCustomers.set(i, selectedCustomer);
-                break;
-            }
-        }
-    }
-
-
-
 }

@@ -1,11 +1,7 @@
 package model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class FirstLevelDivision {
 
-    private static ObservableList<FirstLevelDivision> divisionIdList = FXCollections.observableArrayList();
     private int divisionID;
     private String divisionName;
 
@@ -30,9 +26,21 @@ public class FirstLevelDivision {
         this.divisionName = divisionName;
     }
 
-    public static void addDivision(FirstLevelDivision newDivision){
-        divisionIdList.add(newDivision);
+    public static int divisionToCountryID(int divisionID){
+
+        int countryID;
+        if (divisionID > 100){
+            countryID = 2;
+        }
+        else if (divisionID < 60){
+            countryID = 1;
+        }
+        else {
+            countryID = 3;
+        }
+        return countryID;
     }
+
 
     @Override
     public String toString(){

@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customer;
@@ -18,6 +15,7 @@ import model.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerView implements Initializable {
@@ -108,7 +106,34 @@ public class CustomerView implements Initializable {
         stage.show();
     }
 
-    public void onActionDeleteCustomer(ActionEvent actionEvent) {
+    public void onActionDeleteCustomer(ActionEvent actionEvent) throws IOException {
+
+        if(customerTable.getSelectionModel().getSelectedItem() != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Delete");
+            alert.setContentText("Are you sure that you would like to delete the selected item?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent()) {
+
+                if (result.get() == ButtonType.OK) {
+                    DBCustomer.deleteCustomer(customerTable.getSelectionModel().getSelectedItem().getCustomerId());
+                }
+                else {
+                    customerTable.getSelectionModel().clearSelection();
+                }
+            }
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerView.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else {
+            Customer.itemSelectError();
+        }
+
     }
 
     /**

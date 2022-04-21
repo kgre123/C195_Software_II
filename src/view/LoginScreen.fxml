@@ -18,6 +18,7 @@
          <children>
             <Button fx:id="LoginButton" layoutX="443.0" layoutY="45.0" mnemonicParsing="false" onAction="#onActionLogin" text="Login" />
             <Button fx:id="CancelButton" layoutX="512.0" layoutY="45.0" mnemonicParsing="false" onAction="#onActionCancel" text="Cancel" />
+            <Label fx:id="regionCode" alignment="CENTER" layoutX="374.0" layoutY="121.0" prefHeight="17.0" prefWidth="229.0" text="Label" textAlignment="CENTER" />
          </children>
       </Pane>
       <GridPane layoutX="29.0" layoutY="155.0" prefHeight="90.0" prefWidth="546.0">

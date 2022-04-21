@@ -72,8 +72,8 @@
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="startDateText" alignment="CENTER" prefHeight="25.0" prefWidth="141.0" promptText="mm/dd/yyyy" GridPane.columnIndex="1" />
-            <TextField fx:id="endDateText" alignment="CENTER" promptText="mm/dd/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="startDateText" alignment="CENTER" prefHeight="25.0" prefWidth="141.0" promptText="yyyy-mm-dd" GridPane.columnIndex="1" />
+            <TextField fx:id="endDateText" alignment="CENTER" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="startTimeText" alignment="CENTER" promptText="Enter time in 24-hour format" GridPane.columnIndex="3" />
             <TextField fx:id="endTimeText" alignment="CENTER" promptText="Enter time in 24-hour format" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>

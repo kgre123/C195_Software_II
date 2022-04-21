@@ -1,5 +1,9 @@
 package controller;
 
+import dbConnections.DBAppointment;
+import dbConnections.DBContact;
+import dbConnections.DBCustomer;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +15,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contact;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -70,7 +78,7 @@ public class AddAppointment implements Initializable {
     public TextField userIdText;
 
     @FXML
-    public ComboBox contactComboBox;
+    public ComboBox<Contact> contactComboBox;
 
     @FXML
     public Button addButton;
@@ -106,9 +114,47 @@ public class AddAppointment implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        ObservableList<Contact> clist = DBContact.getAllContacts();
+        contactComboBox.setItems(clist);
+        contactComboBox.setVisibleRowCount(3);
+
     }
 
     public void onActionAdd(ActionEvent actionEvent) {
+
+
+        try{
+            String title = titleText.getText();
+            String description = descriptionText.getText();
+            String location = locationText.getText();
+            String type = typeText.getText();
+
+            String startDate = startDateText.getText();
+            String startTime = startTimeText.getText();
+            String fullStart = startDate + " " + startTime;
+            Timestamp start = Timestamp.valueOf(fullStart);
+            System.out.println(start);
+
+            String endDate = endDateText.getText();
+            String endTime = endTimeText.getText();
+            String fullEnd = endDate + " " + endTime;
+            Timestamp end = Timestamp.valueOf(fullEnd);
+            System.out.println(end);
+
+            int customerId = Integer.parseInt(customerIdText.getText());
+            int userId = Integer.parseInt(userIdText.getText());
+            int contactID =  contactComboBox.getValue().getContactId();
+
+            DBAppointment.addAppointment(title, description, location, type, start, end, customerId, userId, contactID);
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch(NumberFormatException | IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**

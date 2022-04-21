@@ -35,6 +35,5 @@ public class DBDivision {
         return dlist;
     }
 
-
 }
 

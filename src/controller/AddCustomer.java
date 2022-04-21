@@ -1,6 +1,7 @@
 package controller;
 
 import dbConnections.DBCountry;
+import dbConnections.DBCustomer;
 import dbConnections.DBDivision;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +16,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Country;
+import model.Customer;
 import model.FirstLevelDivision;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -96,9 +99,18 @@ public class AddCustomer implements Initializable {
             String address = addressText.getText();
             String zip = postalCodeText.getText();
             String phone = phoneNumberText.getText();
+
+            int divID =  flDivisionComboBox.getValue().getDivisionID();
+
+            DBCustomer.addCustomer(name, address, zip, phone, divID);
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerView.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
         }
-        catch(NumberFormatException e){
-            //ignore
+        catch(NumberFormatException | IOException | SQLException e){
+             e.printStackTrace();
         }
     }
 

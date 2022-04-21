@@ -1,6 +1,7 @@
 package controller;
 
 import dbConnections.DBAppointment;
+import dbConnections.DBCustomer;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -12,11 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
+import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AppointmentView implements Initializable {
@@ -173,8 +176,56 @@ public class AppointmentView implements Initializable {
         stage.show();
     }
 
-    public void onActionDeleteAppointment(ActionEvent actionEvent) {
+    public void onActionDeleteAppointment(ActionEvent actionEvent) throws IOException {
 
+        if(weeklyAppointmentTable.getSelectionModel().getSelectedItem() != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Delete");
+            alert.setContentText("Are you sure that you would like to delete the selected item?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent()) {
+
+                if (result.get() == ButtonType.OK) {
+                    DBAppointment.deleteAppointment(weeklyAppointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
+                }
+                else {
+                    weeklyAppointmentTable.getSelectionModel().clearSelection();
+                }
+            }
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+
+        else if(monthlyAppointmentTable.getSelectionModel().getSelectedItem() != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Delete");
+            alert.setContentText("Are you sure that you would like to delete the selected item?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent()) {
+
+                if (result.get() == ButtonType.OK) {
+                    DBAppointment.deleteAppointment(monthlyAppointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
+                }
+                else {
+                    monthlyAppointmentTable.getSelectionModel().clearSelection();
+                }
+            }
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else {
+            Customer.itemSelectError();
+        }
 
     }
 

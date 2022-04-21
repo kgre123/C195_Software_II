@@ -1,5 +1,8 @@
 package controller;
 
+import dbConnections.DBCountry;
+import dbConnections.DBDivision;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Country;
+import model.FirstLevelDivision;
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,6 +80,13 @@ public class ModifyCustomer implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        ObservableList<FirstLevelDivision> dlist = DBDivision.getAllDivisionIds();
+        flDivisionComboBox.setItems(dlist);
+        flDivisionComboBox.setVisibleRowCount(10);
+
+        ObservableList<Country> clist = DBCountry.getAllCountryIds();
+        countryDataComboBox.setItems(clist);
+        countryDataComboBox.setVisibleRowCount(3);
     }
 
     public void onActionModify(ActionEvent actionEvent) {
