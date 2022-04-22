@@ -35,5 +35,28 @@ public class DBDivision {
         return dlist;
     }
 
+    public static FirstLevelDivision returnDivision(int divisionId) throws SQLException {
+
+        try {
+            String sql = "SELECT Division_ID, Division FROM first_level_divisions WHERE Division_ID = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, divisionId);
+            ps.execute();
+
+            ResultSet rs = ps.getResultSet();
+
+            rs.next();
+            int searchedDivisionId = rs.getInt("Division_ID");
+            String divisionName = rs.getString("Division");
+            FirstLevelDivision f = new FirstLevelDivision(searchedDivisionId, divisionName);
+            return f;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
 

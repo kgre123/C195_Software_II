@@ -44,7 +44,7 @@ public class FirstLevelDivision {
 
     @Override
     public String toString(){
-        return("ID: " + Integer.toString(divisionID) + " - Location: " + divisionName);
+        return(divisionName);
     }
 
 }

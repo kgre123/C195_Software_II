@@ -3,6 +3,7 @@ package dbConnections;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Contact;
 import model.Country;
 
 
@@ -37,5 +38,28 @@ public class DBCountry {
     }
 
 
+    public static Country returnCountry(int countryId) throws SQLException {
+
+        try {
+            String sql = "SELECT Country_ID, Country FROM countries WHERE Country_ID = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, countryId);
+            ps.execute();
+
+            ResultSet rs = ps.getResultSet();
+
+            rs.next();
+            int searchedCountryId = rs.getInt("Country_ID");
+            String countryName = rs.getString("Country");
+            Country c = new Country(searchedCountryId, countryName);
+            return c;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
 }
 

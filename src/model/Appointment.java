@@ -2,8 +2,8 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 
@@ -131,6 +131,33 @@ public class Appointment {
         this.endDate = endDate;
     }
 
+    public String getStartDay(Timestamp startDate){
+
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return startDate.toLocalDateTime().format(date);
+
+    }
+
+    public String getEndDay(Timestamp endDate){
+
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return endDate.toLocalDateTime().format(date);
+
+    }
+
+    public String getStartTime(Timestamp startDate){
+
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("hh:mm:ss");
+        return startDate.toLocalDateTime().format(time);
+
+    }
+
+    public String getEndTime(Timestamp endDate){
+
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("hh:mm:ss");
+        return endDate.toLocalDateTime().format(time);
+
+    }
     /**
      * @return the customer id
      */
@@ -173,56 +200,4 @@ public class Appointment {
         this.contactId = contactId;
     }
 
-    /**
-     * adding an Appointment to the observable list
-     * @param newAppointment specifies the Appointment being added
-     */
-    public static void addAppointment(Appointment newAppointment){
-        allAppointments.add(newAppointment);
-    }
-
-    /**
-     * deleting an Appointment from the observable list
-     * @param selectedAppointment the appointment that is being deleted
-     * @return deletes the Appointment if found
-     */
-    public static boolean deleteAppointment(Appointment selectedAppointment) {
-        if(allAppointments.contains(selectedAppointment)){
-            allAppointments.remove(selectedAppointment);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    /**
-     * finding the index of the Appointments
-     * @param AppointmentId the appointment id being searched for
-     * @return index
-     */
-    public static int getAppointmentIndex(int AppointmentId){
-
-        for (int i = 0; i < allAppointments.size(); i++) {
-            if (allAppointments.get(i).getAppointmentId() == AppointmentId) {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    /**
-     * updating the Appointment to not create duplicates
-     * @param index index of the Appointment
-     * @param selectedAppointment the Appointment that is being searched for
-     */
-    public static void updateAppointment(int index, Appointment selectedAppointment) {
-
-        for (int i = 0; i < allAppointments.size(); i++) {
-            if (allAppointments.get(i).getAppointmentId() == selectedAppointment.getAppointmentId()) {
-                allAppointments.set(i, selectedAppointment);
-                break;
-            }
-        }
-    }
 }

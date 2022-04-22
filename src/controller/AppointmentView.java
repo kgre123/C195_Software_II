@@ -17,6 +17,7 @@ import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
@@ -168,12 +169,41 @@ public class AppointmentView implements Initializable {
      * @param actionEvent when the button is clicked
      * @throws IOException error
      */
-    public void OnActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
+    public void OnActionUpdateAppointment(ActionEvent actionEvent) throws IOException, SQLException {
 
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/UpdateAppointment.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        if(weeklyAppointmentTable.getSelectionModel().getSelectedItem() != null) {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/UpdateAppointment.fxml"));
+            loader.load();
+
+            UpdateAppointment UAController = loader.getController();
+            UAController.getAppointmentInfo(weeklyAppointmentTable.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+
+        else if(monthlyAppointmentTable.getSelectionModel().getSelectedItem() != null) {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/UpdateAppointment.fxml"));
+            loader.load();
+
+            UpdateAppointment UAController = loader.getController();
+            UAController.getAppointmentInfo(monthlyAppointmentTable.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else {
+
+            Customer.itemSelectError();
+        }
     }
 
     public void onActionDeleteAppointment(ActionEvent actionEvent) throws IOException {

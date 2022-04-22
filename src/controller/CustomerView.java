@@ -14,6 +14,7 @@ import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -98,12 +99,27 @@ public class CustomerView implements Initializable {
      * @param actionEvent when the button is clicked
      * @throws IOException error
      */
-    public void onActionModifyCustomer(ActionEvent actionEvent) throws IOException {
+    public void onActionModifyCustomer(ActionEvent actionEvent) throws IOException, SQLException {
 
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ModifyCustomer.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        if(customerTable.getSelectionModel().getSelectedItem() != null) {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/ModifyCustomer.fxml"));
+            loader.load();
+
+            ModifyCustomer MCController = loader.getController();
+            MCController.getCustomerInfo(customerTable.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else {
+
+            Customer.itemSelectError();
+        }
+
     }
 
     public void onActionDeleteCustomer(ActionEvent actionEvent) throws IOException {

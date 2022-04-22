@@ -1,5 +1,6 @@
 package controller;
 
+import dbConnections.DBContact;
 import dbConnections.DBCountry;
 import dbConnections.DBDivision;
 import javafx.collections.ObservableList;
@@ -14,11 +15,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contact;
 import model.Country;
+import model.Customer;
 import model.FirstLevelDivision;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -66,10 +70,10 @@ public class ModifyCustomer implements Initializable {
     public TextField phoneNumberText;
 
     @FXML
-    public ComboBox flDivisionComboBox;
+    public ComboBox<FirstLevelDivision> flDivisionComboBox;
 
     @FXML
-    public ComboBox countryDataComboBox;
+    public ComboBox<Country> countryDataComboBox;
 
     @FXML
     public Button modifyButton;
@@ -87,9 +91,12 @@ public class ModifyCustomer implements Initializable {
         ObservableList<Country> clist = DBCountry.getAllCountryIds();
         countryDataComboBox.setItems(clist);
         countryDataComboBox.setVisibleRowCount(3);
+
     }
 
     public void onActionModify(ActionEvent actionEvent) {
+
+
     }
 
     /**
@@ -105,5 +112,18 @@ public class ModifyCustomer implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
 
+    }
+
+    public void getCustomerInfo(Customer customer) throws SQLException {
+
+        customerIdText.setText(String.valueOf(customer.getCustomerId()));
+        nameText.setText(customer.getCustomerName());
+        addressText.setText(String.valueOf(customer.getCustomerAddress()));
+        PostalCodeText.setText(String.valueOf(customer.getCustomerZip()));
+        phoneNumberText.setText(String.valueOf(customer.getCustomerPhone()));
+        FirstLevelDivision f = DBDivision.returnDivision(customer.getCustomerDivisionId());
+        flDivisionComboBox.setValue(f);
+        Country c = DBCountry.returnCountry(customer.getCustomerCountryId());
+        countryDataComboBox.setValue(c);
     }
 }
