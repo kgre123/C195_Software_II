@@ -2,6 +2,7 @@ package controller;
 
 import dbConnections.DBContact;
 import dbConnections.DBCountry;
+import dbConnections.DBCustomer;
 import dbConnections.DBDivision;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,7 +65,7 @@ public class ModifyCustomer implements Initializable {
     public TextField addressText;
 
     @FXML
-    public TextField PostalCodeText;
+    public TextField postalCodeText;
 
     @FXML
     public TextField phoneNumberText;
@@ -96,6 +97,25 @@ public class ModifyCustomer implements Initializable {
 
     public void onActionModify(ActionEvent actionEvent) {
 
+        try{
+
+            int id = Integer.parseInt(customerIdText.getText());
+            String name = nameText.getText();
+            String address = addressText.getText();
+            String zip = postalCodeText.getText();
+            String phone = phoneNumberText.getText();
+            int divisionId = flDivisionComboBox.getValue().getDivisionID();
+
+            DBCustomer.updateCustomer(name, address, zip, phone, divisionId, id);
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerView.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch(NumberFormatException | IOException e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -119,7 +139,7 @@ public class ModifyCustomer implements Initializable {
         customerIdText.setText(String.valueOf(customer.getCustomerId()));
         nameText.setText(customer.getCustomerName());
         addressText.setText(String.valueOf(customer.getCustomerAddress()));
-        PostalCodeText.setText(String.valueOf(customer.getCustomerZip()));
+        postalCodeText.setText(String.valueOf(customer.getCustomerZip()));
         phoneNumberText.setText(String.valueOf(customer.getCustomerPhone()));
         FirstLevelDivision f = DBDivision.returnDivision(customer.getCustomerDivisionId());
         flDivisionComboBox.setValue(f);

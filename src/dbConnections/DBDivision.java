@@ -1,6 +1,5 @@
 package dbConnections;
 
-import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.FirstLevelDivision;
@@ -56,6 +55,28 @@ public class DBDivision {
         }
 
         return null;
+    }
+
+    public static int returnCountryId(int divisionId) throws SQLException {
+
+        try {
+            String sql = "SELECT Country_ID FROM first_level_divisions WHERE Division_ID = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, divisionId);
+            ps.execute();
+
+            ResultSet rs = ps.getResultSet();
+
+            rs.next();
+            int searchedCountryId = rs.getInt("Country_ID");
+
+            return searchedCountryId;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return 0;
     }
 
 }

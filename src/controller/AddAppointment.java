@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Contact;
 
 import java.io.IOException;
@@ -124,28 +125,29 @@ public class AddAppointment implements Initializable {
 
 
         try{
-            String title = titleText.getText();
-            String description = descriptionText.getText();
-            String location = locationText.getText();
-            String type = typeText.getText();
+            Appointment appointment = new Appointment();
+            appointment.setTitle(titleText.getText());
+            appointment.setDescription(descriptionText.getText());
+            appointment.setLocation(locationText.getText());
+            appointment.setType(typeText.getText());
 
             String startDate = startDateText.getText();
             String startTime = startTimeText.getText();
             String fullStart = startDate + " " + startTime;
             Timestamp start = Timestamp.valueOf(fullStart);
-            System.out.println(start);
+            appointment.setStartDate(start);
 
             String endDate = endDateText.getText();
             String endTime = endTimeText.getText();
             String fullEnd = endDate + " " + endTime;
             Timestamp end = Timestamp.valueOf(fullEnd);
-            System.out.println(end);
+            appointment.setEndDate(end);
 
-            int customerId = Integer.parseInt(customerIdText.getText());
-            int userId = Integer.parseInt(userIdText.getText());
-            int contactID =  contactComboBox.getValue().getContactId();
+            appointment.setCustomerId(Integer.parseInt(customerIdText.getText()));
+            appointment.setUserId(Integer.parseInt(userIdText.getText()));
+            appointment.setContactId(contactComboBox.getValue().getContactId());
 
-            DBAppointment.addAppointment(title, description, location, type, start, end, customerId, userId, contactID);
+            DBAppointment.addAppointment(appointment);
 
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));

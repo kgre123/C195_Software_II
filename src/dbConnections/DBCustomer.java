@@ -1,6 +1,6 @@
 package dbConnections;
 
-import helper.JDBC;
+import helper.Conversions;
 import model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,40 +40,51 @@ public class DBCustomer {
         return clist;
     }
 
-    public static void addCustomer(String customerName, String customerAddress, String customerZip, String customerPhone, int divisionId) throws SQLException {
+    public static void addCustomer(Customer customer) throws SQLException {
 
         try {
-            String sql = "INSERT into customers (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(NULL, ?, ?, ?, ?, ?)";
+            String sql = "INSERT into customers (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
-            ps.setString(1, customerName);
-            ps.setString(2, customerAddress);
-            ps.setString(3, customerZip);
-            ps.setString(4, customerPhone);
-            ps.setInt(5, divisionId);
-            ps.execute();
+            ps.setString(1, customer.getCustomerName());
+            ps.setString(2, customer.getCustomerAddress());
+            ps.setString(3, customer.getCustomerZip());
+            ps.setString(4, customer.getCustomerPhone());
+            ps.setTimestamp(5, Conversions.getCurrentTimestamp());
+            ps.setString(6, DBUser.getCurrentUser());
+            ps.setTimestamp(7, Conversions.getCurrentTimestamp());
+            ps.setString(8, DBUser.getCurrentUser());
+            ps.setInt(9, customer.getCustomerDivisionId());
+            ps.executeUpdate();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void updateCustomer(String customerName, String customerAddress, String customerZip, String customerPhone, int divisionId){
+    public static void updateCustomer(String name, String address, String zip, String phone, int divisionId, int id){
 
         try{
-            String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
+
+            String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?,  Division_ID = ? WHERE Customer_ID = ?";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
-            ps.setString(1, customerName);
-            ps.setString(2, customerAddress);
-            ps.setString(3, customerZip);
-            ps.setString(4, customerPhone);
-            ps.setInt(5, divisionId);
-            ps.execute();
+            ps.setString(1, name);
+            ps.setString(2, address);
+            ps.setString(3, zip);
+            ps.setString(4, phone);
+            ps.setTimestamp(5, Conversions.getCurrentTimestamp());
+            ps.setString(6, DBUser.getCurrentUser());
+            ps.setInt(7, divisionId);
+            ps.setInt(8, id);
+
+            ps.executeUpdate();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
     public static void deleteCustomer(int customerId){

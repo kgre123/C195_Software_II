@@ -1,11 +1,12 @@
 package dbConnections;
 
-import helper.JDBC;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUser {
+
+    static String currentUser;
 
     public static boolean userLogin(String username, String password){
 
@@ -19,6 +20,7 @@ public class DBUser {
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()){
+                setCurrentUser(username);
                 return true;
             }
         }
@@ -27,6 +29,15 @@ public class DBUser {
         }
         return false;
 
+    }
+
+    private static void setCurrentUser(String username) {
+
+        currentUser = username;
+    }
+
+    public static String getCurrentUser(){
+        return currentUser;
     }
 
 

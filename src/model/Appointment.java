@@ -1,14 +1,11 @@
 package model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 
-    private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-
+    private static int id;
     private int appointmentId;
     private String title;
     private String description;
@@ -19,6 +16,10 @@ public class Appointment {
     private int customerId;
     private int userId;
     private int contactId;
+
+    public Appointment(){
+
+    }
 
     public Appointment(int appointmentId, String title, String description, String location, String type, Timestamp startDate, Timestamp endDate, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
@@ -32,6 +33,10 @@ public class Appointment {
         this.userId = userId;
         this.contactId = contactId;
     }
+    public static int getId() {
+        return id;
+    }
+
 
     /**
      * @return the appointment id
@@ -147,14 +152,14 @@ public class Appointment {
 
     public String getStartTime(Timestamp startDate){
 
-        DateTimeFormatter time = DateTimeFormatter.ofPattern("hh:mm:ss");
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
         return startDate.toLocalDateTime().format(time);
 
     }
 
     public String getEndTime(Timestamp endDate){
 
-        DateTimeFormatter time = DateTimeFormatter.ofPattern("hh:mm:ss");
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
         return endDate.toLocalDateTime().format(time);
 
     }

@@ -31,15 +31,15 @@
             <Label fx:id="addressLabel" text="Address" GridPane.rowIndex="2" />
             <Label fx:id="postalCodeLabel" text="Postal Code" GridPane.rowIndex="3" />
             <Label fx:id="phoneNumberLabel" text="Phone Number" GridPane.rowIndex="4" />
-            <Label fx:id="flDivisionLabel" text="First-Level Division" GridPane.rowIndex="5" />
-            <Label fx:id="countryDataLabel" text="Country Data" GridPane.rowIndex="6" />
+            <Label fx:id="flDivisionLabel" text="First-Level Division" GridPane.rowIndex="6" />
+            <Label fx:id="countryDataLabel" text="Country Data" GridPane.rowIndex="5" />
             <TextField fx:id="customerIdText" alignment="CENTER" editable="false" promptText="Disabled--Auto-Generated" GridPane.columnIndex="1" />
             <TextField fx:id="nameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="addressText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="postalCodeText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="phoneNumberText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="flDivisionComboBox" prefHeight="25.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="countryDataComboBox" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="flDivisionComboBox" prefHeight="25.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="countryDataComboBox" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button fx:id="addButton" layoutX="429.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionAdd" text="Add" />

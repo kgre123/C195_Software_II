@@ -13,6 +13,10 @@ public class Customer {
     private int customerCountryId;
 
 
+    public Customer(){
+
+    }
+
     public Customer(int customerId, String customerName, String customerAddress, String customerZip, String customerPhone, int customerDivisionId, int customerCountryId) {
         this.customerId = customerId;
         this.customerName = customerName;
@@ -126,7 +130,15 @@ public class Customer {
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("No Items Selected");
-        alert.setContentText("Please select an item to remove!");
+        alert.setContentText("Please select an item from the list!");
+        alert.showAndWait();
+    }
+
+    public static void customerAppointmentError(){
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Customer has Appointments");
+        alert.setContentText("You must delete all appointments for the customer before deleting the customer.");
         alert.showAndWait();
     }
 }

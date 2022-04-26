@@ -124,6 +124,8 @@ public class UpdateAppointment implements Initializable {
     public void onActionUpdate(ActionEvent actionEvent) throws IOException {
 
         try {
+
+            int id = Integer.parseInt(appointmentIdText.getText());
             String title = titleText.getText();
             String description = descriptionText.getText();
             String location = locationText.getText();
@@ -133,19 +135,17 @@ public class UpdateAppointment implements Initializable {
             String startTime = startTimeText.getText();
             String fullStart = startDate + " " + startTime;
             Timestamp start = Timestamp.valueOf(fullStart);
-            //System.out.println(start);
 
             String endDate = endDateText.getText();
             String endTime = endTimeText.getText();
             String fullEnd = endDate + " " + endTime;
             Timestamp end = Timestamp.valueOf(fullEnd);
-            //System.out.println(end);
 
             int customerId = Integer.parseInt(customerIdText.getText());
             int userId = Integer.parseInt(userIdText.getText());
-            int contactID =  contactComboBox.getValue().getContactId();
+            int contactId = contactComboBox.getValue().getContactId();
 
-            DBAppointment.updateAppointment(title, description, location, type, start, end, customerId, userId, contactID);
+            DBAppointment.updateAppointment(title, description, location, type, start, end, customerId, userId, contactId, id);
 
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));

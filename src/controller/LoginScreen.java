@@ -1,6 +1,8 @@
 package controller;
 
 import dbConnections.DBUser;
+import helper.Conversions;
+import helper.Log;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +49,7 @@ public class LoginScreen implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        regionCode.setText(Conversions.getTimeZone());
     }
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
@@ -65,9 +68,11 @@ public class LoginScreen implements Initializable {
         boolean login = DBUser.userLogin(username, password);
 
         if(!login){
+            Log.logAttempts(username, password);
             User.incorrectUserNameOrPassword();
         }
         else{
+            Log.logAttempts(username, password);
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Object scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainScreen.fxml")));
             stage.setScene(new Scene ((Parent)scene));

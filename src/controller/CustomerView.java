@@ -1,5 +1,6 @@
 package controller;
 
+import dbConnections.DBAppointment;
 import dbConnections.DBCustomer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,6 +66,11 @@ public class CustomerView implements Initializable {
     @FXML
     public Button backButton;
 
+    /**
+     * This initializes the customer view by filling the tables with the customer information
+     *
+     * @param url, resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -122,6 +128,12 @@ public class CustomerView implements Initializable {
 
     }
 
+    /**
+     * This method takes the selected customer and goes through the deletion process. It will not delete the customer if the customer has appointments.
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
     public void onActionDeleteCustomer(ActionEvent actionEvent) throws IOException {
 
         if(customerTable.getSelectionModel().getSelectedItem() != null) {
@@ -135,7 +147,17 @@ public class CustomerView implements Initializable {
             if (result.isPresent()) {
 
                 if (result.get() == ButtonType.OK) {
-                    DBCustomer.deleteCustomer(customerTable.getSelectionModel().getSelectedItem().getCustomerId());
+                    if (DBAppointment.checkCustomerAppointments(customerTable.getSelectionModel().getSelectedItem().getCustomerId()) > 0){
+                        Customer.customerAppointmentError();
+                    } else {
+                        Alert deleted = new Alert(Alert.AlertType.INFORMATION);
+                        deleted.setTitle("Customer Deleted");
+                        deleted.setContentText("Customer: " + customerTable.getSelectionModel().getSelectedItem().getCustomerName() + " has been deleted!");
+
+                        deleted.showAndWait();
+                        DBCustomer.deleteCustomer(customerTable.getSelectionModel().getSelectedItem().getCustomerId());
+
+                    }
                 }
                 else {
                     customerTable.getSelectionModel().clearSelection();

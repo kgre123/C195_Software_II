@@ -3,8 +3,10 @@ package controller;
 import dbConnections.DBCountry;
 import dbConnections.DBCustomer;
 import dbConnections.DBDivision;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -80,29 +82,36 @@ public class AddCustomer implements Initializable {
     @FXML
     public Button cancelButton;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<Country> clist = DBCountry.getAllCountryIds();
+        countryDataComboBox.setItems(clist);
+        countryDataComboBox.setVisibleRowCount(3);
 
         ObservableList<FirstLevelDivision> dlist = DBDivision.getAllDivisionIds();
         flDivisionComboBox.setItems(dlist);
         flDivisionComboBox.setVisibleRowCount(10);
 
-        ObservableList<Country> clist = DBCountry.getAllCountryIds();
-        countryDataComboBox.setItems(clist);
-        countryDataComboBox.setVisibleRowCount(3);
     }
-
+    /**
+     * This method adds the customer to the database and retains their information
+     *
+     * @param actionEvent when the button is clicked
+     * @throws NumberFormatException error
+     */
     public void onActionAdd(ActionEvent actionEvent) {
 
         try{
-            String name = nameText.getText();
-            String address = addressText.getText();
-            String zip = postalCodeText.getText();
-            String phone = phoneNumberText.getText();
+            Customer customer = new Customer();
+            customer.setCustomerName(nameText.getText());
+            customer.setCustomerAddress(addressText.getText());
+            customer.setCustomerZip(postalCodeText.getText());
+            customer.setCustomerPhone(phoneNumberText.getText());
+            customer.setCustomerDivisionId(flDivisionComboBox.getValue().getDivisionID());
 
-            int divID =  flDivisionComboBox.getValue().getDivisionID();
-
-            DBCustomer.addCustomer(name, address, zip, phone, divID);
+            DBCustomer.addCustomer(customer);
 
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerView.fxml")));
