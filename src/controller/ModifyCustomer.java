@@ -134,6 +134,23 @@ public class ModifyCustomer implements Initializable {
 
     }
 
+    public void onCountryCombo(ActionEvent actionEvent) throws SQLException {
+
+        int countryId = countryDataComboBox.getSelectionModel().getSelectedItem().getCountryId();
+        flDivisionComboBox.getSelectionModel().clearSelection();
+
+        if (countryId == 0){
+            ObservableList<FirstLevelDivision> dlist = DBDivision.getAllDivisionIds();
+            flDivisionComboBox.setItems(dlist);
+        }
+        else {
+            flDivisionComboBox.getSelectionModel().clearSelection();
+            ObservableList<FirstLevelDivision> dlist = DBDivision.returnDivisionByCountry(countryId);
+            flDivisionComboBox.setItems(dlist);
+        }
+        flDivisionComboBox.setVisibleRowCount(10);
+    }
+
     public void getCustomerInfo(Customer customer) throws SQLException {
 
         customerIdText.setText(String.valueOf(customer.getCustomerId()));

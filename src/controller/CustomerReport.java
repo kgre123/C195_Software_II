@@ -2,24 +2,30 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Appointment;
+import model.Customer;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class CustomerReport {
-    public TableView customerTable;
-    public TableColumn appointmentIdColumn;
-    public TableColumn appointmentTitleColumn;
-    public TableColumn appointmentTypeColumn;
-    public TableColumn appointmentDescriptionColumn;
-    public TableColumn appointmentStartColumn;
-    public TableColumn appointmentEndColumn;
-    public TableColumn contactIdColumn;
-    public ComboBox customerComboBox;
+public class CustomerReport implements Initializable {
+    public TableView<Appointment> customerTable;
+    public TableColumn<Appointment, Integer> appointmentIdColumn;
+    public TableColumn<Appointment, String> appointmentTitleColumn;
+    public TableColumn<Appointment, String> appointmentTypeColumn;
+    public TableColumn<Appointment, String> appointmentDescriptionColumn;
+    public TableColumn<Appointment, Timestamp> appointmentStartColumn;
+    public TableColumn<Appointment, Timestamp> appointmentEndColumn;
+    public TableColumn<Appointment, Integer> contactIdColumn;
+    public ComboBox<Customer> customerComboBox;
     public Label selectCustomerLabel;
     public Button backButton;
     public Button refreshButton;
@@ -36,5 +42,10 @@ public class CustomerReport {
     }
 
     public void onActionRefresh(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

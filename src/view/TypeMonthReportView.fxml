@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TypeMonthReport">
    <children>
-      <GridPane layoutY="8.0" prefHeight="90.0" prefWidth="600.0">
+      <GridPane layoutY="8.0" prefHeight="57.0" prefWidth="600.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -49,5 +48,7 @@
         </columns>
       </TableView>
       <Button fx:id="backButton" layoutX="513.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionBack" text="Back" />
+      <Button fx:id="selectTypeButton" layoutX="112.0" layoutY="73.0" mnemonicParsing="false" onAction="#onTypeSelect" text="Select" />
+      <Button fx:id="selectMonthButton" layoutX="427.0" layoutY="73.0" mnemonicParsing="false" onAction="#onMonthSelect" text="Select" />
    </children>
 </AnchorPane>

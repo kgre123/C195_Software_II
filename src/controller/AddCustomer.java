@@ -136,4 +136,20 @@ public class AddCustomer implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+
+    public void onCountryCombo(ActionEvent actionEvent) throws SQLException {
+
+        int countryId = countryDataComboBox.getSelectionModel().getSelectedItem().getCountryId();
+
+        if (countryId == 0){
+            ObservableList<FirstLevelDivision> dlist = DBDivision.getAllDivisionIds();
+            flDivisionComboBox.setItems(dlist);
+            flDivisionComboBox.setVisibleRowCount(10);
+        }
+        else {
+            ObservableList<FirstLevelDivision> dlist = DBDivision.returnDivisionByCountry(countryId);
+            flDivisionComboBox.setItems(dlist);
+            flDivisionComboBox.setVisibleRowCount(10);
+        }
+    }
 }

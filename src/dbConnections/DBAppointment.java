@@ -4,11 +4,13 @@ import helper.Conversions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;
+import model.FirstLevelDivision;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class DBAppointment {
 
@@ -165,5 +167,56 @@ public class DBAppointment {
             throwables.printStackTrace();
         }
         return appointments.size();
+    }
+
+    public static ObservableList<Appointment> getAppointmentsByType(String type) {
+
+        ObservableList<Appointment> alist = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Appointment_ID, Start, Customer_ID from appointments WHERE Type = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setString(1, type);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                Timestamp startDate = rs.getTimestamp("Start");
+                int customerId = rs.getInt("Customer_ID");
+
+                Appointment a = new Appointment(appointmentId, startDate, customerId);
+
+
+                alist.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alist;
+    }
+
+    public static ObservableList<String> getAllTypes(){
+
+        ObservableList<String> tlist = FXCollections.observableArrayList();
+
+        try{
+            String sql = "SELECT DISTINCT Type FROM appointments";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                String type = rs.getString("Type");
+                tlist.add(type);
+            }
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tlist;
     }
 }

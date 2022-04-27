@@ -57,26 +57,29 @@ public class DBDivision {
         return null;
     }
 
-    public static int returnCountryId(int divisionId) throws SQLException {
+    public static ObservableList<FirstLevelDivision> returnDivisionByCountry(int countryId) throws SQLException {
 
+        ObservableList<FirstLevelDivision> filter = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT Country_ID FROM first_level_divisions WHERE Division_ID = ?";
+            String sql = "SELECT Division_ID, Division FROM first_level_divisions WHERE Country_ID = ?";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-            ps.setInt(1, divisionId);
+            ps.setInt(1, countryId);
             ps.execute();
 
             ResultSet rs = ps.getResultSet();
 
-            rs.next();
-            int searchedCountryId = rs.getInt("Country_ID");
+            while (rs.next()) {
+                int divisionId = rs.getInt("Division_ID");
+                String name = rs.getString("Division");
 
-            return searchedCountryId;
-
+                FirstLevelDivision f = new FirstLevelDivision(divisionId, name);
+                filter.add(f);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return 0;
+        return filter;
     }
 
 }

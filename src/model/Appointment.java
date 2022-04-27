@@ -21,6 +21,12 @@ public class Appointment {
 
     }
 
+    public Appointment(int appointmentId, Timestamp startDate, int customerId) {
+        this.appointmentId = appointmentId;
+        this.startDate = startDate;
+        this.customerId = customerId;
+    }
+
     public Appointment(int appointmentId, String title, String description, String location, String type, Timestamp startDate, Timestamp endDate, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
