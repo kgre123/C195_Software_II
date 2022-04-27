@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TypeMonthReport">
+   <children>
+      <GridPane layoutY="8.0" prefHeight="90.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="typeLabel" alignment="CENTER" prefHeight="17.0" prefWidth="276.0" text="Select the appointment type to search for:" />
+            <ComboBox fx:id="monthCombo" onAction="#onMonthCombo" prefHeight="25.0" prefWidth="283.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <ComboBox fx:id="typeCombo" onAction="#onTypeCombo" prefHeight="25.0" prefWidth="270.0" GridPane.rowIndex="1" />
+            <Label fx:id="monthLabel" alignment="CENTER" prefHeight="17.0" prefWidth="306.0" text="Select the month you would like to search:" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <TableView fx:id="monthTable" layoutX="313.0" layoutY="104.0" prefHeight="245.0" prefWidth="280.0">
+        <columns>
+          <TableColumn fx:id="monthAppointmentId" prefWidth="98.0" text="Appointment ID" />
+          <TableColumn fx:id="monthStart" prefWidth="89.0" text="Start Date" />
+            <TableColumn fx:id="monthCustomerId" prefWidth="92.0" text="Customer ID" />
+        </columns>
+      </TableView>
+      <TableView fx:id="typeTable" layoutX="7.0" layoutY="104.0" prefHeight="245.0" prefWidth="262.0">
+        <columns>
+          <TableColumn fx:id="typeAppointmentId" prefWidth="102.0" text="Appointment ID" />
+          <TableColumn fx:id="typeStart" prefWidth="74.0" text="Start Date" />
+            <TableColumn fx:id="typeCustomerId" prefWidth="85.0" text="Customer ID" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" layoutX="513.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionBack" text="Back" />
+   </children>
+</AnchorPane>

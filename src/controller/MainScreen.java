@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 
 public class MainScreen implements Initializable {
 
+    @FXML
+    public Button reportsButton;
+
     Parent scene;
 
     @FXML
@@ -75,5 +78,13 @@ public class MainScreen implements Initializable {
      */
     public void onActionExitProgram(ActionEvent actionEvent) {
         System.exit(0);
+    }
+
+    public void onActionReports(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportView.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 }

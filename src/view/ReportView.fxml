@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ReportView">
+   <children>
+      <Label fx:id="report1Label" alignment="CENTER" layoutY="21.0" prefHeight="17.0" prefWidth="600.0" text="Display appointments by type and month" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="report2Label" alignment="CENTER" layoutX="-1.0" layoutY="172.0" prefHeight="17.0" prefWidth="600.0" text="Display a schedule for each contact">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="report3Label" alignment="CENTER" layoutY="315.0" prefHeight="17.0" prefWidth="600.0" text="Display a schedule fo each customer">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="report1Button" layoutX="249.0" layoutY="49.0" mnemonicParsing="false" onAction="#onActionGenReport1" text="Get Report" />
+      <Button fx:id="report2Button" layoutX="249.0" layoutY="200.0" mnemonicParsing="false" onAction="#onActionGenReport2" text="Get Report" />
+      <Button fx:id="report3Button" layoutX="249.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionGenReport3" text="Get Report" />
+      <Button fx:id="backButton" layoutX="496.0" layoutY="358.0" mnemonicParsing="false" onAction="#onActionBack" prefHeight="25.0" prefWidth="53.0" text="Back" />
+   </children>
+</AnchorPane>
