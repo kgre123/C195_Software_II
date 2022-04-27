@@ -14,6 +14,7 @@ public class DBAppointment {
 
     /**
      * This method creates an observable list of all weekly appointments
+     * @return returns a list of appointments for the current week
      */
     public static ObservableList<Appointment> getAllWeeklyAppointments() {
 
@@ -50,7 +51,7 @@ public class DBAppointment {
 
     /**
      * This method creates an observable list of all monthly appointments
-     *
+     * @return returns the list of appointments for the current month
      */
     public static ObservableList<Appointment> getAllMonthlyAppointments() {
 
@@ -174,6 +175,7 @@ public class DBAppointment {
     /**
      * This method checks to see if a particular customer has an appointment
      * @param customerId the customerId to check in the database for appointments
+     * @return returns the length the the list of appointments
      */
     public static int checkCustomerAppointments(int customerId) {
 
@@ -202,6 +204,7 @@ public class DBAppointment {
     /**
      * This method creates an observable list of appointments by type
      * @param type the parameter that is being searched for in the database
+     * @return returns a list of appointments of the given type
      */
     public static ObservableList<Appointment> getAppointmentsByType(String type) {
 
@@ -234,6 +237,7 @@ public class DBAppointment {
 
     /**
      * This method creates an observable list of types to be used in a combobox
+     * @return returns a list of the types
      */
     public static ObservableList<String> getAllTypes(){
 
@@ -290,6 +294,11 @@ public class DBAppointment {
         }
     }
 
+    /**
+     * This method returns a list of appointments by the customer selected
+     * @param customerId the customer that the appointments are for
+     * @return returns a list of appointments by the specific customer
+     */
     public static ObservableList<Appointment> getAppointmentsByCustomer(int customerId) {
 
         ObservableList<Appointment> alist = FXCollections.observableArrayList();
@@ -320,4 +329,68 @@ public class DBAppointment {
         return alist;
     }
 
+    /**
+     * This method returns a list of appointments by the contact selected
+     * @param contactId the contact that the appointments are for
+     * @return returns a list of appointments by the specific contact
+     */
+    public static ObservableList<Appointment> getAppointmentsByContact(int contactId) {
+
+        ObservableList<Appointment> alist = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Appointment_ID, Title, Description, Type, Start, End, Customer_ID from appointments WHERE Contact_ID = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, contactId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String type = rs.getString("Type");
+                Timestamp startDate = rs.getTimestamp("Start");
+                Timestamp endDate = rs.getTimestamp("End");
+                int customerId = rs.getInt("Customer_ID");
+                Appointment a = new Appointment(appointmentId, title, description, type, startDate, endDate, customerId, contactId);
+
+                alist.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alist;
+
+    }
+
+    public static ObservableList<Appointment> getAppointmentsByMonth(int month){
+
+        ObservableList<Appointment> alist = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Appointment_ID, Start, Customer_ID from appointments WHERE MONTH(Start) = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, month);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                Timestamp startDate = rs.getTimestamp("Start");
+                int customerId = rs.getInt("Customer_ID");
+
+                Appointment a = new Appointment(appointmentId, startDate, customerId);
+
+
+                alist.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alist;
+    }
 }

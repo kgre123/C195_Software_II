@@ -1,7 +1,6 @@
 package controller;
 
 import dbConnections.DBAppointment;
-import dbConnections.DBCountry;
 import dbConnections.DBCustomer;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
-import model.Country;
 import model.Customer;
 
 import java.io.IOException;
@@ -61,7 +59,12 @@ public class CustomerReport implements Initializable {
     @FXML
     public Button refreshButton;
 
+    /**
+     * This method refreshes the page to update the table when the combobox is changed
+     * @param actionEvent when the button is clicked
+     */
     public void onCombo(ActionEvent actionEvent) {
+        onActionRefresh(null);
     }
 
     /**

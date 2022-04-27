@@ -24,9 +24,6 @@ public class TypeMonthReport implements Initializable {
     public Label typeLabel;
 
     @FXML
-    public ComboBox monthCombo;
-
-    @FXML
     public ComboBox<String> typeCombo;
 
     @FXML
@@ -65,15 +62,15 @@ public class TypeMonthReport implements Initializable {
     @FXML
     public Button selectMonthButton;
 
+    @FXML
+    public TextField monthText;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         ObservableList<String> tlist = DBAppointment.getAllTypes();
         typeCombo.setItems(tlist);
 
-    }
-
-    public void onMonthCombo(ActionEvent actionEvent) {
     }
 
     public void onTypeCombo(ActionEvent actionEvent) {
@@ -102,5 +99,19 @@ public class TypeMonthReport implements Initializable {
     }
 
     public void onMonthSelect(ActionEvent actionEvent) {
+
+        if (monthText.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("No Month Entered");
+            alert.setContentText("Please enter a month!");
+            alert.showAndWait();
+        }
+        else {
+            int monthNumber = Integer.parseInt(monthText.getText());
+            monthTable.setItems(DBAppointment.getAppointmentsByMonth(monthNumber));
+            monthAppointmentId.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+            monthStart.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+            monthCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        }
     }
 }
