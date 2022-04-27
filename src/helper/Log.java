@@ -1,6 +1,8 @@
 package helper;
 
 import dbConnections.DBUser;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,6 +10,11 @@ import java.time.LocalDateTime;
 
 public class Log {
 
+    /**
+     * This method writes the login information to the log file
+     * @param username the username that is being checked and logged
+     * @param password the password that is being checked and logged
+     */
     public static void logAttempts(String username, String password){
 
         BufferedWriter bw = null;
@@ -43,5 +50,26 @@ public class Log {
             }
 
         }
+    }
+
+    /**
+     * This method creates an alert that displays when there are appointments coming up in the next 15 minutes
+     * @param appointmentString the observable list of strings to use in the alert message
+     */
+    public static void upcomingAppointmentAlert(ObservableList<String> appointmentString) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Appointment Soon!");
+        alert.setContentText(appointmentString + " starts within the next 15 minutes!");
+        alert.showAndWait();
+    }
+
+    /**
+     * This creates the alert that displays when there are no upcoming appointments
+     */
+    public static void noUpcomingAppointment(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("No Appointments Soon!");
+        alert.setContentText("There are no appointments scheduled within the next 15 minutes.");
+        alert.showAndWait();
     }
 }

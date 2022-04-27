@@ -80,6 +80,11 @@ public class MainScreen implements Initializable {
         System.exit(0);
     }
 
+    /**
+     * This method takes the user to the reports page
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
     public void onActionReports(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

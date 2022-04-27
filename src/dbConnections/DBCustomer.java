@@ -101,4 +101,30 @@ public class DBCustomer {
         }
     }
 
+    public static ObservableList<Customer> getCustomersById() {
+
+        ObservableList<Customer> clist = FXCollections.observableArrayList();
+
+        try{
+            String sql = "SELECT Customer_Name, Customer_ID FROM customers";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                String customerName = rs.getString("Customer_Name");
+                int customerId = rs.getInt("Customer_ID");
+                Customer c = new Customer(customerName, customerId);
+                clist.add(c);
+            }
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clist;
+    }
+
+
 }

@@ -28,6 +28,11 @@ public class Customer {
 
     }
 
+    public Customer(String customerName, int customerId) {
+        this.customerName = customerName;
+        this.customerId = customerId;
+    }
+
     /**
      * @return the customer name
      */
@@ -124,6 +129,11 @@ public class Customer {
      */
     public void setCustomerCountryId(int customerCountryId) {
         this.customerCountryId = customerCountryId;
+    }
+
+    @Override
+    public String toString() {
+        return customerName;
     }
 
     public static void itemSelectError(){

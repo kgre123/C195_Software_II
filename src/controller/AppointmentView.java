@@ -1,9 +1,7 @@
 package controller;
 
 import dbConnections.DBAppointment;
-import dbConnections.DBCustomer;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Customer;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -117,8 +114,6 @@ public class AppointmentView implements Initializable {
     @FXML
     public Button backButton;
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -145,8 +140,6 @@ public class AppointmentView implements Initializable {
         monthlyEndColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         monthlyCustomerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         monthlyUserIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
-
-
     }
 
     /**
@@ -206,6 +199,12 @@ public class AppointmentView implements Initializable {
         }
     }
 
+    /**
+     * This method deletes the selected appointment or throws an error if nothing is selected
+     *
+     * @param actionEvent when the button is clicked
+     * @throws IOException error
+     */
     public void onActionDeleteAppointment(ActionEvent actionEvent) throws IOException {
 
         if(weeklyAppointmentTable.getSelectionModel().getSelectedItem() != null) {
@@ -279,11 +278,5 @@ public class AppointmentView implements Initializable {
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainScreen.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
-    }
-
-    public void onActionShowWeekly(Event event) {
-    }
-
-    public void onActionShowMonthly(Event event) {
     }
 }

@@ -1,22 +1,26 @@
 package helper;
 
 import javafx.scene.control.Alert;
-
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.sql.Timestamp;
-import java.time.temporal.ChronoUnit;
 
 public class Conversions {
 
+    /**
+     * This method gets the zoneId of the user's computer
+     * @return returns the string of the zoneId of the system
+     */
     public static String getTimeZone(){
 
         ZoneId zone = ZoneId.systemDefault();
         return zone.toString();
     }
 
+    /**
+     * This method returns the current time
+     * @return returns the current time as a timestamp
+     */
     public static Timestamp getCurrentTimestamp(){
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -24,23 +28,15 @@ public class Conversions {
         return Timestamp.valueOf(formatter.format(holder));
     }
 
-    //public static boolean businessOpen(Timestamp start, Timestamp end){
+    /**
+     * This method creates an alert for when appointments are not scheduled in business hours
+     */
+    public static void invalidHours(){
 
-
-    //}
-
-    public static void appointmentIn15(Timestamp start){
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Timestamp holder = new Timestamp(System.currentTimeMillis());
-        Timestamp.valueOf(formatter.format(holder));
-        long difference = holder.getTime() - start.getTime();
-        long diffMin = difference / (60 * 1000) % 60;
-
-        if(diffMin < 15){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Appointment in Next 15 Minutes");
-            alert.setContentText("Are you sure that you would like to delete the selected item?");
-        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Appointment Hours");
+        alert.setContentText("The appointment is not scheduled during business hours. Please schedule between 8am - 10pm EST.");
+        alert.showAndWait();
     }
+
 }

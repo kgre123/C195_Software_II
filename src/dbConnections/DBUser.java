@@ -8,6 +8,11 @@ public class DBUser {
 
     static String currentUser;
 
+    /**
+     * This method collects the username and password for login
+     * @param username the username checked for login
+     * @param password the password checked for login
+     */
     public static boolean userLogin(String username, String password){
 
         try{
@@ -31,11 +36,19 @@ public class DBUser {
 
     }
 
+    /**
+     * This method sets the current username for the log file to check
+     * @param username the username that is being set
+     */
     private static void setCurrentUser(String username) {
 
         currentUser = username;
     }
 
+    /**
+     * This method sets the current username for the log file to check
+     * @return returns the username currently logged in
+     */
     public static String getCurrentUser(){
         return currentUser;
     }

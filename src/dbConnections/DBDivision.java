@@ -10,6 +10,9 @@ import java.sql.SQLException;
 
 public class DBDivision {
 
+    /**
+     * This method creates an observable list of the divisions
+     */
     public static ObservableList<FirstLevelDivision> getAllDivisionIds(){
 
         ObservableList<FirstLevelDivision> dlist = FXCollections.observableArrayList();
@@ -34,6 +37,10 @@ public class DBDivision {
         return dlist;
     }
 
+    /**
+     * This method selects the id and name of a division from the database
+     * @param divisionId the divisionId that is being used as a parameter
+     */
     public static FirstLevelDivision returnDivision(int divisionId) throws SQLException {
 
         try {
@@ -57,6 +64,10 @@ public class DBDivision {
         return null;
     }
 
+    /**
+     * This method returns the divisions based on the countryId
+     * @param countryId the countryId is being referenced to return the divisions
+     */
     public static ObservableList<FirstLevelDivision> returnDivisionByCountry(int countryId) throws SQLException {
 
         ObservableList<FirstLevelDivision> filter = FXCollections.observableArrayList();

@@ -1,19 +1,20 @@
 package dbConnections;
 
 import helper.Conversions;
+import helper.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;
-import model.FirstLevelDivision;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 public class DBAppointment {
 
+    /**
+     * This method creates an observable list of all weekly appointments
+     */
     public static ObservableList<Appointment> getAllWeeklyAppointments() {
 
         ObservableList<Appointment> alist = FXCollections.observableArrayList();
@@ -47,6 +48,10 @@ public class DBAppointment {
         return alist;
     }
 
+    /**
+     * This method creates an observable list of all monthly appointments
+     *
+     */
     public static ObservableList<Appointment> getAllMonthlyAppointments() {
 
         ObservableList<Appointment> alist = FXCollections.observableArrayList();
@@ -80,6 +85,10 @@ public class DBAppointment {
         return alist;
     }
 
+    /**
+     * This method creates an appointment in the database
+     * @param appointment the appointment that is being created
+     */
     public static void addAppointment(Appointment appointment) {
 
         try {
@@ -106,6 +115,19 @@ public class DBAppointment {
         }
     }
 
+    /**
+     * This method updates an appointment in the database
+     * @param contactId the contactId to add
+     * @param title the title to add
+     * @param description the description to add
+     * @param location the location to add
+     * @param type the type to add
+     * @param start the start date to add
+     * @param end the end date to add
+     * @param customerId the customerId to add
+     * @param userId the userId to add
+     * @param id the appointmentId to search by
+     */
     public static void updateAppointment(String title, String description, String location, String type, Timestamp start, Timestamp end, int customerId, int userId, int contactId, int id) {
 
         try {
@@ -131,6 +153,10 @@ public class DBAppointment {
         }
     }
 
+    /**
+     * This method deletes an appointment
+     * @param appointmentId the appointmentId that is being deleted
+     */
     public static void deleteAppointment(int appointmentId) {
 
         try {
@@ -145,6 +171,10 @@ public class DBAppointment {
         }
     }
 
+    /**
+     * This method checks to see if a particular customer has an appointment
+     * @param customerId the customerId to check in the database for appointments
+     */
     public static int checkCustomerAppointments(int customerId) {
 
         ObservableList<Integer> appointments = FXCollections.observableArrayList();
@@ -169,6 +199,10 @@ public class DBAppointment {
         return appointments.size();
     }
 
+    /**
+     * This method creates an observable list of appointments by type
+     * @param type the parameter that is being searched for in the database
+     */
     public static ObservableList<Appointment> getAppointmentsByType(String type) {
 
         ObservableList<Appointment> alist = FXCollections.observableArrayList();
@@ -198,6 +232,9 @@ public class DBAppointment {
         return alist;
     }
 
+    /**
+     * This method creates an observable list of types to be used in a combobox
+     */
     public static ObservableList<String> getAllTypes(){
 
         ObservableList<String> tlist = FXCollections.observableArrayList();
@@ -219,4 +256,68 @@ public class DBAppointment {
         }
         return tlist;
     }
+
+    /**
+     * This method checks the next 15 minutes for an appointment
+     */
+    public static void appointmentCheck(){
+
+        ObservableList<String> alist = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT Appointment_ID, Start FROM client_schedule.appointments WHERE Start BETWEEN current_timestamp() AND current_timestamp() + interval 15 minute";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int appointmentId = rs.getInt("Appointment_ID");
+                Timestamp start = rs.getTimestamp("Start");
+                String sAppointmentId = String.valueOf(appointmentId);
+                String sStart = String.valueOf(start);
+                String appointmentString = "Appointment ID: " + sAppointmentId + " Start Time and Date: " + sStart;
+                alist.add(appointmentString);
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (alist.size() > 0) {
+            Log.upcomingAppointmentAlert(alist);
+        }
+        else {
+            Log.noUpcomingAppointment();
+        }
+    }
+
+    public static ObservableList<Appointment> getAppointmentsByCustomer(int customerId) {
+
+        ObservableList<Appointment> alist = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Appointment_ID, Title, Description, Type, Start, End, Contact_ID from appointments WHERE Customer_ID = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, customerId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String type = rs.getString("Type");
+                Timestamp startDate = rs.getTimestamp("Start");
+                Timestamp endDate = rs.getTimestamp("End");
+                int contactId = rs.getInt("Contact_ID");
+                Appointment a = new Appointment(appointmentId, title, description, type, startDate, endDate, customerId, contactId);
+
+                alist.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alist;
+    }
+
 }

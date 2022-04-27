@@ -3,6 +3,7 @@ package controller;
 import dbConnections.DBAppointment;
 import dbConnections.DBContact;
 import dbConnections.DBCustomer;
+import helper.Conversions;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
@@ -22,9 +20,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class AddAppointment implements Initializable {
 
@@ -121,6 +122,10 @@ public class AddAppointment implements Initializable {
 
     }
 
+    /**
+     * This method saves the information from the user as a new appointment in the database
+     * @param actionEvent when the button is clicked
+     */
     public void onActionAdd(ActionEvent actionEvent) {
 
 
@@ -131,17 +136,45 @@ public class AddAppointment implements Initializable {
             appointment.setLocation(locationText.getText());
             appointment.setType(typeText.getText());
 
+            //getting the dates ready to check times
             String startDate = startDateText.getText();
             String startTime = startTimeText.getText();
             String fullStart = startDate + " " + startTime;
             Timestamp start = Timestamp.valueOf(fullStart);
-            appointment.setStartDate(start);
-
             String endDate = endDateText.getText();
             String endTime = endTimeText.getText();
             String fullEnd = endDate + " " + endTime;
             Timestamp end = Timestamp.valueOf(fullEnd);
-            appointment.setEndDate(end);
+
+            LocalDate businessOpenDate = LocalDate.of(2022, 04, 27);
+            LocalTime businessOpenTime = LocalTime.of(8,00);
+            ZoneId easternZoneId = ZoneId.of("America/Indiana/Vevay");
+            ZonedDateTime openZDT = ZonedDateTime.of(businessOpenDate, businessOpenTime, easternZoneId);
+
+            LocalDate businessCloseDate = LocalDate.of(2022, 04, 27);
+            LocalTime businessCloseTime = LocalTime.of(22,00);
+            ZonedDateTime closeZDT = ZonedDateTime.of(businessCloseDate, businessCloseTime, easternZoneId);
+
+            ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
+            ZonedDateTime openToLocalZDT = openZDT.withZoneSameInstant(localZoneId);
+            Timestamp openTimestamp = Timestamp.from(openToLocalZDT.toInstant());
+            ZonedDateTime closeToLocalZDT = closeZDT.withZoneSameInstant(localZoneId);
+            Timestamp closeTimestamp = Timestamp.from(closeToLocalZDT.toInstant());
+
+            LocalTime startHours = start.toLocalDateTime().toLocalTime();
+            LocalTime openHours = openTimestamp.toLocalDateTime().toLocalTime();
+            LocalTime endHours = end.toLocalDateTime().toLocalTime();
+            LocalTime closeHours = closeTimestamp.toLocalDateTime().toLocalTime();
+
+            int startComparison = startHours.compareTo(openHours);
+            int endComparison = endHours.compareTo(closeHours);
+            if(startComparison >= 0 && endComparison <= 0) {
+                appointment.setStartDate(start);
+                appointment.setEndDate(end);
+            } else {
+                Conversions.invalidHours();
+                return;
+            }
 
             appointment.setCustomerId(Integer.parseInt(customerIdText.getText()));
             appointment.setUserId(Integer.parseInt(userIdText.getText()));

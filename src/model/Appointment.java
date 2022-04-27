@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 
-    private static int id;
     private int appointmentId;
     private String title;
     private String description;
@@ -39,10 +38,17 @@ public class Appointment {
         this.userId = userId;
         this.contactId = contactId;
     }
-    public static int getId() {
-        return id;
-    }
 
+    public Appointment(int appointmentId, String title, String description, String type, Timestamp startDate, Timestamp endDate, int customerId, int contactId) {
+        this.appointmentId = appointmentId;
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.customerId = customerId;
+        this.contactId = contactId;
+    }
 
     /**
      * @return the appointment id

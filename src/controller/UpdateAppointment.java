@@ -2,6 +2,7 @@ package controller;
 
 import dbConnections.DBAppointment;
 import dbConnections.DBContact;
+import helper.Conversions;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,9 +23,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class UpdateAppointment implements Initializable {
 
@@ -121,6 +127,10 @@ public class UpdateAppointment implements Initializable {
 
     }
 
+    /**
+     * This method updates selected appointment with the information from the user
+     * @param actionEvent when the button is clicked
+     */
     public void onActionUpdate(ActionEvent actionEvent) throws IOException {
 
         try {
@@ -131,21 +141,53 @@ public class UpdateAppointment implements Initializable {
             String location = locationText.getText();
             String type = typeText.getText();
 
+
+            //getting the dates ready to check times
             String startDate = startDateText.getText();
             String startTime = startTimeText.getText();
             String fullStart = startDate + " " + startTime;
             Timestamp start = Timestamp.valueOf(fullStart);
-
             String endDate = endDateText.getText();
             String endTime = endTimeText.getText();
             String fullEnd = endDate + " " + endTime;
             Timestamp end = Timestamp.valueOf(fullEnd);
 
+            LocalDate businessOpenDate = LocalDate.of(2022, 04, 27);
+            LocalTime businessOpenTime = LocalTime.of(8,00);
+            ZoneId easternZoneId = ZoneId.of("America/Indiana/Vevay");
+            ZonedDateTime openZDT = ZonedDateTime.of(businessOpenDate, businessOpenTime, easternZoneId);
+
+            LocalDate businessCloseDate = LocalDate.of(2022, 04, 27);
+            LocalTime businessCloseTime = LocalTime.of(22,00);
+            ZonedDateTime closeZDT = ZonedDateTime.of(businessCloseDate, businessCloseTime, easternZoneId);
+
+            ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
+            ZonedDateTime openToLocalZDT = openZDT.withZoneSameInstant(localZoneId);
+            Timestamp openTimestamp = Timestamp.from(openToLocalZDT.toInstant());
+            ZonedDateTime closeToLocalZDT = closeZDT.withZoneSameInstant(localZoneId);
+            Timestamp closeTimestamp = Timestamp.from(closeToLocalZDT.toInstant());
+
+            LocalTime startHours = start.toLocalDateTime().toLocalTime();
+            LocalTime openHours = openTimestamp.toLocalDateTime().toLocalTime();
+            LocalTime endHours = end.toLocalDateTime().toLocalTime();
+            LocalTime closeHours = closeTimestamp.toLocalDateTime().toLocalTime();
+
+            int startComparison = startHours.compareTo(openHours);
+            int endComparison = endHours.compareTo(closeHours);
+
             int customerId = Integer.parseInt(customerIdText.getText());
             int userId = Integer.parseInt(userIdText.getText());
             int contactId = contactComboBox.getValue().getContactId();
 
-            DBAppointment.updateAppointment(title, description, location, type, start, end, customerId, userId, contactId, id);
+            if(startComparison >= 0 && endComparison <= 0) {
+                Timestamp startTest = Timestamp.valueOf(fullStart);
+                Timestamp endTest = Timestamp.valueOf(fullEnd);
+                DBAppointment.updateAppointment(title, description, location, type, startTest, endTest, customerId, userId, contactId, id);
+            } else {
+                Conversions.invalidHours();
+                return;
+            }
+
 
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
@@ -171,6 +213,11 @@ public class UpdateAppointment implements Initializable {
         stage.show();
     }
 
+    /**
+     * This method retrieves information about the selected appointment and returns that info to the form
+     * @param appointment the appointment information to remove from the database
+     * @throws SQLException error
+     */
     public void getAppointmentInfo(Appointment appointment) throws SQLException {
 
         appointmentIdText.setText(String.valueOf(appointment.getAppointmentId()));

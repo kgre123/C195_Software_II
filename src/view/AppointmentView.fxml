@@ -17,7 +17,7 @@
       </Label>
       <TabPane layoutX="-3.0" layoutY="46.0" prefHeight="325.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="weeklyAppointmentsTab" onSelectionChanged="#onActionShowWeekly" text="Weekly">
+          <Tab fx:id="weeklyAppointmentsTab" text="Weekly">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="178.0" prefWidth="600.0">
                      <children>
@@ -39,7 +39,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="monthlyAppointmentsTab" onSelectionChanged="#onActionShowMonthly" text="Monthly">
+          <Tab fx:id="monthlyAppointmentsTab" text="Monthly">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
