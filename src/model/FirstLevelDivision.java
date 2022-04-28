@@ -10,37 +10,33 @@ public class FirstLevelDivision {
         this.divisionName = divisionName;
     }
 
+    /**
+     * @return the division id
+     */
     public int getDivisionID() {
         return divisionID;
     }
 
+    /**
+     * @param divisionID setter
+     */
     public void setDivisionID(int divisionID) {
         this.divisionID = divisionID;
     }
 
+    /**
+     * @return the division name
+     */
     public String getDivisionName() {
         return divisionName;
     }
 
+    /**
+     * @param divisionName setter
+     */
     public void setDivisionName(String divisionName) {
         this.divisionName = divisionName;
     }
-
-    public static int divisionToCountryID(int divisionID){
-
-        int countryID;
-        if (divisionID > 100){
-            countryID = 2;
-        }
-        else if (divisionID < 60){
-            countryID = 1;
-        }
-        else {
-            countryID = 3;
-        }
-        return countryID;
-    }
-
 
     @Override
     public String toString(){

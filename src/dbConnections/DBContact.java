@@ -9,6 +9,10 @@ import java.sql.SQLException;
 
 public class DBContact {
 
+    /**
+     * This method creates an observable list of the contacts
+     * @return returns the observable list
+     */
     public static ObservableList<Contact> getAllContacts() {
 
         ObservableList<Contact> clist = FXCollections.observableArrayList();
@@ -32,6 +36,11 @@ public class DBContact {
         return clist;
     }
 
+    /**
+     * This method returns a contact based on the contact id
+     * @return returns the contact
+     * @param contactId the contact to be found
+     */
     public static Contact returnContact(int contactId) throws SQLException {
 
         try {

@@ -137,6 +137,10 @@ public class AddCustomer implements Initializable {
         stage.show();
     }
 
+    /**
+     * This method filters the division combobox based on the country selected
+     * @param actionEvent event
+     */
     public void onCountryCombo(ActionEvent actionEvent) throws SQLException {
 
         int countryId = countryDataComboBox.getSelectionModel().getSelectedItem().getCountryId();

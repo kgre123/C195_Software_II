@@ -11,6 +11,10 @@ import java.sql.SQLException;
 
 public class DBCountry {
 
+    /**
+     * This method creates an observable list of the countries
+     * @return returns the observable list
+     */
     public static ObservableList<Country> getAllCountryIds(){
 
         ObservableList<Country> clist = FXCollections.observableArrayList();
@@ -36,6 +40,11 @@ public class DBCountry {
     }
 
 
+    /**
+     * This method gets a country by the specific id
+     * @return returns the country
+     * @param countryId the id to find the specific country
+     */
     public static Country returnCountry(int countryId) throws SQLException {
 
         try {

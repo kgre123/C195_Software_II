@@ -14,9 +14,12 @@ For this project, I used IntelliJ version 2021.1.3x64. This was the version that
 The JDK used was jdk-11.0.11 and the JavaFX version that was used was javafx-jdk-11.0.2
 
 Directions for the Program
-•  directions for how to run the program
 
-•  a description of the additional report of your choice you ran in part A3f
+
+Additional Report
+For my additional report, I created a report that showed appointments based on the customer. This basically created
+a customer schedule so that they could see everything that was coming up for them. This would be helpful to the customer
+as they could ask someone about their appointments and it would be easy to find.
 
 MySQL Connector
 For this project, I did the majority of the work on the virtual environment. Using that environment, I used the

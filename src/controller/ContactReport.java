@@ -2,7 +2,6 @@ package controller;
 
 import dbConnections.DBAppointment;
 import dbConnections.DBContact;
-import dbConnections.DBCustomer;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
-import model.Customer;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;

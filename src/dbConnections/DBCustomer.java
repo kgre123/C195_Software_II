@@ -9,6 +9,10 @@ import java.sql.*;
 
 public class DBCustomer {
 
+    /**
+     * This method creates an observable list of the customers
+     * @return returns the observable list
+     */
     public static ObservableList<Customer> getAllCustomers(){
 
         ObservableList<Customer> clist = FXCollections.observableArrayList();
@@ -40,6 +44,10 @@ public class DBCustomer {
         return clist;
     }
 
+    /**
+     * This method creates an observable list of the divisions
+     * @param customer is the customer to add
+     */
     public static void addCustomer(Customer customer) throws SQLException {
 
         try {
@@ -63,6 +71,15 @@ public class DBCustomer {
         }
     }
 
+    /**
+     * This method updates a customer in the database
+     * @param address the address to update
+     * @param divisionId to be updated
+     * @param id to be updated
+     * @param name to be updated
+     * @param phone to be updated
+     * @param zip to be update
+     */
     public static void updateCustomer(String name, String address, String zip, String phone, int divisionId, int id){
 
         try{
@@ -87,6 +104,10 @@ public class DBCustomer {
 
     }
 
+    /**
+     * This method deletes a customer in the database
+     * @param customerId  the customer to be deleted
+     */
     public static void deleteCustomer(int customerId){
 
         try{
@@ -101,6 +122,10 @@ public class DBCustomer {
         }
     }
 
+    /**
+     * This method creates an observable list of the customers
+     * @return returns the observable list
+     */
     public static ObservableList<Customer> getCustomersById() {
 
         ObservableList<Customer> clist = FXCollections.observableArrayList();

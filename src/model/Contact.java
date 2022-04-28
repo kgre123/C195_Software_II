@@ -10,18 +10,30 @@ public class Contact {
         this.contactName = contactName;
     }
 
+    /**
+     * @return the contact id
+     */
     public int getContactId() {
         return contactId;
     }
 
+    /**
+     * @param contactId setter
+     */
     public void setContactId(int contactId) {
         this.contactId = contactId;
     }
 
+    /**
+     * @return the contact name
+     */
     public String getContactName() {
         return contactName;
     }
 
+    /**
+     * @param contactName setter
+     */
     public void setContactName(String contactName) {
         this.contactName = contactName;
     }

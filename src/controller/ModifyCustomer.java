@@ -95,6 +95,10 @@ public class ModifyCustomer implements Initializable {
 
     }
 
+    /**
+     * This method saves the modifications to the customer
+     * @param actionEvent event
+     */
     public void onActionModify(ActionEvent actionEvent) {
 
         try{
@@ -134,6 +138,10 @@ public class ModifyCustomer implements Initializable {
 
     }
 
+    /**
+     * This method filters the division combobox based on the country
+     * @param actionEvent event
+     */
     public void onCountryCombo(ActionEvent actionEvent) throws SQLException {
 
         int countryId = countryDataComboBox.getSelectionModel().getSelectedItem().getCountryId();
@@ -151,6 +159,10 @@ public class ModifyCustomer implements Initializable {
         flDivisionComboBox.setVisibleRowCount(10);
     }
 
+    /**
+     * This method connects the user info from the table to the form
+     * @param customer the customer that will have their information retrieved for the form
+     */
     public void getCustomerInfo(Customer customer) throws SQLException {
 
         customerIdText.setText(String.valueOf(customer.getCustomerId()));

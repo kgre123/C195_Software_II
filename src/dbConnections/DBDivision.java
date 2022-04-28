@@ -12,6 +12,7 @@ public class DBDivision {
 
     /**
      * This method creates an observable list of the divisions
+     * @return returns the observable list
      */
     public static ObservableList<FirstLevelDivision> getAllDivisionIds(){
 
@@ -40,6 +41,7 @@ public class DBDivision {
     /**
      * This method selects the id and name of a division from the database
      * @param divisionId the divisionId that is being used as a parameter
+     * @return returns the division id and name
      */
     public static FirstLevelDivision returnDivision(int divisionId) throws SQLException {
 
@@ -67,6 +69,7 @@ public class DBDivision {
     /**
      * This method returns the divisions based on the countryId
      * @param countryId the countryId is being referenced to return the divisions
+     * @return returns the observable list
      */
     public static ObservableList<FirstLevelDivision> returnDivisionByCountry(int countryId) throws SQLException {
 

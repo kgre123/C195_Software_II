@@ -10,18 +10,30 @@ public class Country {
         this.countryName = countryName;
     }
 
+    /**
+     * @return the country id
+     */
     public int getCountryId() {
         return countryId;
     }
 
+    /**
+     * @param countryId setter
+     */
     public void setCountryId(int countryId) {
         this.countryId = countryId;
     }
 
+    /**
+     * @return the country name
+     */
     public String getCountryName() {
         return countryName;
     }
 
+    /**
+     * @param countryName setter
+     */
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }

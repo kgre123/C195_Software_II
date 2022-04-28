@@ -34,6 +34,10 @@ public class ReportView {
     @FXML
     public Button backButton;
 
+    /**
+     * This method goes to the first report
+     * @param actionEvent event
+     */
     public void onActionGenReport1(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -42,6 +46,10 @@ public class ReportView {
         stage.show();
     }
 
+    /**
+     * This method goes to the second report
+     * @param actionEvent event
+     */
     public void onActionGenReport2(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -50,6 +58,10 @@ public class ReportView {
         stage.show();
     }
 
+    /**
+     * This method goes to the third report
+     * @param actionEvent event
+     */
     public void onActionGenReport3(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -58,6 +70,10 @@ public class ReportView {
         stage.show();
     }
 
+    /**
+     * This method goes back a screen
+     * @param actionEvent event
+     */
     public void onActionBack(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

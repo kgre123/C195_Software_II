@@ -50,6 +50,11 @@ public class Appointment {
         this.contactId = contactId;
     }
 
+    public Appointment(int appointmentId, Timestamp startDate) {
+        this.appointmentId = appointmentId;
+        this.startDate = startDate;
+    }
+
     /**
      * @return the appointment id
      */
@@ -148,6 +153,10 @@ public class Appointment {
         this.endDate = endDate;
     }
 
+    /**
+     * @return the start day in the pattern shown
+     * @param startDate the date to be formatted
+     */
     public String getStartDay(Timestamp startDate){
 
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -155,6 +164,10 @@ public class Appointment {
 
     }
 
+    /**
+     * @return the end day in the pattern shown
+     * @param endDate the date to be formatted
+     */
     public String getEndDay(Timestamp endDate){
 
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -162,6 +175,10 @@ public class Appointment {
 
     }
 
+    /**
+     * @return the start time in the pattern shown
+     * @param startDate the date to be formatted
+     */
     public String getStartTime(Timestamp startDate){
 
         DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -169,6 +186,10 @@ public class Appointment {
 
     }
 
+    /**
+     * @return the end time in the pattern shown
+     * @param endDate the date to be formatted
+     */
     public String getEndTime(Timestamp endDate){
 
         DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");

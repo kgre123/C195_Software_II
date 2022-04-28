@@ -3,6 +3,8 @@ package helper;
 import dbConnections.DBUser;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import model.Appointment;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -54,12 +56,12 @@ public class Log {
 
     /**
      * This method creates an alert that displays when there are appointments coming up in the next 15 minutes
-     * @param appointmentString the observable list of strings to use in the alert message
+     * @param appointment the observable list of strings to use in the alert message
      */
-    public static void upcomingAppointmentAlert(ObservableList<String> appointmentString) {
+    public static void upcomingAppointmentAlert(ObservableList<String> appointment) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Appointment Soon!");
-        alert.setContentText(appointmentString + " starts within the next 15 minutes!");
+        alert.setContentText(appointment + " starts within the next 15 minutes!");
         alert.showAndWait();
     }
 

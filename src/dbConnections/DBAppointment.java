@@ -9,6 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 public class DBAppointment {
 
@@ -264,22 +270,29 @@ public class DBAppointment {
     /**
      * This method checks the next 15 minutes for an appointment
      */
-    public static void appointmentCheck(){
+    public static ObservableList<String> appointmentCheck(){
 
         ObservableList<String> alist = FXCollections.observableArrayList();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Timestamp holder = new Timestamp(System.currentTimeMillis());
+        String currentTime = formatter.format(holder);
+
         try {
-            String sql = "SELECT Appointment_ID, Start FROM client_schedule.appointments WHERE Start BETWEEN current_timestamp() AND current_timestamp() + interval 15 minute";
+            String sql = "SELECT Appointment_ID, Start FROM appointments WHERE Start BETWEEN CONVERT('"+currentTime+"', DATETIME) AND CONVERT('"+currentTime+"', DATETIME) + INTERVAL 15 MINUTE";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
                 int appointmentId = rs.getInt("Appointment_ID");
-                Timestamp start = rs.getTimestamp("Start");
-                String sAppointmentId = String.valueOf(appointmentId);
-                String sStart = String.valueOf(start);
-                String appointmentString = "Appointment ID: " + sAppointmentId + " Start Time and Date: " + sStart;
-                alist.add(appointmentString);
+                Timestamp startDate = rs.getTimestamp("Start");
+                String id = String.valueOf(appointmentId);
+                String start = String.valueOf(startDate);
+                String appointment = "Appointment ID: " + id + " | Start Date and Time: " + start;
+
+                alist.add(appointment);
 
 
             }
@@ -292,6 +305,7 @@ public class DBAppointment {
         else {
             Log.noUpcomingAppointment();
         }
+        return alist;
     }
 
     /**
@@ -365,6 +379,11 @@ public class DBAppointment {
 
     }
 
+    /**
+     * This method returns a list of appointments by the month
+     * @param month that the appointments are for
+     * @return returns a list of appointments by the month
+     */
     public static ObservableList<Appointment> getAppointmentsByMonth(int month){
 
         ObservableList<Appointment> alist = FXCollections.observableArrayList();

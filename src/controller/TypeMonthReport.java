@@ -73,11 +73,19 @@ public class TypeMonthReport implements Initializable {
 
     }
 
+    /**
+     * This method sets the month table based on user input
+     * @param actionEvent event
+     */
     public void onTypeCombo(ActionEvent actionEvent) {
          onTypeSelect(null);
 
     }
-    
+
+    /**
+     * This method returns to the previous screen
+     * @param actionEvent event
+     */
     public void onActionBack(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -86,6 +94,10 @@ public class TypeMonthReport implements Initializable {
         stage.show();
     }
 
+    /**
+     * This method sets the type table based on user input
+     * @param actionEvent event
+     */
     public void onTypeSelect(ActionEvent actionEvent) {
 
         String type = typeCombo.getSelectionModel().getSelectedItem();
@@ -98,6 +110,10 @@ public class TypeMonthReport implements Initializable {
         }
     }
 
+    /**
+     * This method sets the month table based on user input
+     * @param actionEvent event
+     */
     public void onMonthSelect(ActionEvent actionEvent) {
 
         if (monthText.getText().isEmpty()){

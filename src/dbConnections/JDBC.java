@@ -23,6 +23,10 @@ public class JDBC {
 
     private static Connection conn = null;
 
+    /**
+     * Creating the connection with the database
+     * @return the connection
+     */
     public static Connection startConnection() {
         try {
             Class.forName(driver);
@@ -35,10 +39,17 @@ public class JDBC {
         return conn;
     }
 
+    /**
+     * the getter for the connection
+     * @return connection
+     */
     public static Connection getConnection(){
         return conn;
     }
 
+    /**
+     * Closing the connection to the database
+     */
     public static void closeConnection() {
         try {
             conn.close();
