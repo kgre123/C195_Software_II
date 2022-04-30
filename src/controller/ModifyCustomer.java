@@ -104,10 +104,31 @@ public class ModifyCustomer implements Initializable {
         try{
 
             int id = Integer.parseInt(customerIdText.getText());
+
             String name = nameText.getText();
+            if(nameText.getText().isEmpty()){
+                Customer.emptyName();
+                return;
+            }
+
             String address = addressText.getText();
+            if(addressText.getText().isEmpty()){
+                Customer.emptyAddress();
+                return;
+            }
+
             String zip = postalCodeText.getText();
+            if(postalCodeText.getText().isEmpty()){
+                Customer.emptyZip();
+                return;
+            }
+
             String phone = phoneNumberText.getText();
+            if(phoneNumberText.getText().isEmpty()){
+                Customer.emptyPhoneNumber();
+                return;
+            }
+
             int divisionId = flDivisionComboBox.getValue().getDivisionID();
 
             DBCustomer.updateCustomer(name, address, zip, phone, divisionId, id);
@@ -141,6 +162,7 @@ public class ModifyCustomer implements Initializable {
     /**
      * This method filters the division combobox based on the country
      * @param actionEvent event
+     * @throws SQLException error
      */
     public void onCountryCombo(ActionEvent actionEvent) throws SQLException {
 
@@ -162,6 +184,7 @@ public class ModifyCustomer implements Initializable {
     /**
      * This method connects the user info from the table to the form
      * @param customer the customer that will have their information retrieved for the form
+     * @throws SQLException error
      */
     public void getCustomerInfo(Customer customer) throws SQLException {
 

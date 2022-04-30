@@ -3,10 +3,8 @@ package controller;
 import dbConnections.DBCountry;
 import dbConnections.DBCustomer;
 import dbConnections.DBDivision;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,7 +18,6 @@ import javafx.stage.Stage;
 import model.Country;
 import model.Customer;
 import model.FirstLevelDivision;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

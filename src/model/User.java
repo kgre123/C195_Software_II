@@ -1,7 +1,6 @@
 package model;
 
 import javafx.scene.control.Alert;
-
 import java.util.Locale;
 
 public class User {

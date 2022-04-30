@@ -62,6 +62,7 @@ public class DBCustomer {
      * the amount of lines that I had to code. It makes that code all contained within this java.file also, which makes it
      * easier to follow.
      * @param customer is the customer to add
+     * @throws SQLException error
      */
     public static void addCustomer(Customer customer) throws SQLException {
 

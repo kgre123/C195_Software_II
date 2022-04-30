@@ -40,6 +40,7 @@ public class ReportView {
     /**
      * This method goes to the first report
      * @param actionEvent event
+     * @throws IOException error
      */
     public void onActionGenReport1(ActionEvent actionEvent) throws IOException {
 
@@ -52,6 +53,7 @@ public class ReportView {
     /**
      * This method goes to the second report
      * @param actionEvent event
+     * @throws IOException error
      */
     public void onActionGenReport2(ActionEvent actionEvent) throws IOException {
 
@@ -64,6 +66,7 @@ public class ReportView {
     /**
      * This method goes to the third report
      * @param actionEvent event
+     * @throws IOException error
      */
     public void onActionGenReport3(ActionEvent actionEvent) throws IOException {
 
@@ -76,6 +79,7 @@ public class ReportView {
     /**
      * This method goes back a screen
      * @param actionEvent event
+     * @throws IOException error
      */
     public void onActionBack(ActionEvent actionEvent) throws IOException {
 
@@ -88,6 +92,7 @@ public class ReportView {
     /**
      * This method goes to the combined type and month report
      * @param actionEvent event
+     * @throws IOException error
      */
     public void onActionGenTMCombo(ActionEvent actionEvent) throws IOException {
 

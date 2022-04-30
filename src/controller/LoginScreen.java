@@ -55,7 +55,8 @@ public class LoginScreen implements Initializable {
      * @param url the url
      * @param resourceBundle the resource bundle used
      * The lambda here is to get the timezone ID to a string. It helped cut down on the lines of code and everything
-     * with it is contained in one class. It makes things easier to follow.
+     * with it is contained in one class. It makes things easier to follow, because everything used for it is found in this
+     * particular file.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
