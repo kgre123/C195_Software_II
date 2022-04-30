@@ -4,6 +4,10 @@ import javafx.scene.control.Alert;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author Kyle Green
+ * This is the appointment class file
+ */
 public class Appointment {
 
     private int appointmentId;

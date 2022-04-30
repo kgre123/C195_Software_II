@@ -12,6 +12,11 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+/**
+ * @author Kyle Green
+ * This is the appointment connection to the database
+ */
+
 public class DBAppointment {
 
     /**
@@ -410,6 +415,7 @@ public class DBAppointment {
     /**
      * This method returns a list of appointments by the month
      * @param month that the appointments are for
+     * @param type the type of appointment
      * @return returns a list of appointments by the month
      */
     public static ObservableList<Appointment> getAppointmentsByTypeMonth(String type, int month){

@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @author Kyle Green
+ * This is creates the actual connection to the database
+ */
 public class JDBC {
 
     private static final String protocol = "jdbc";

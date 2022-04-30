@@ -21,31 +21,35 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the login screen controller
+ */
 public class LoginScreen implements Initializable {
 
-    @FXML
-    public Label UserLoginLabel;
+    /** user login label */
+    @FXML public Label UserLoginLabel;
 
-    @FXML
-    public Button LoginButton;
+    /** user login button */
+    @FXML public Button LoginButton;
 
-    @FXML
-    public Button CancelButton;
+    /** cancel button */
+    @FXML public Button CancelButton;
 
-    @FXML
-    public Label UsernameLabel;
+    /** username label */
+    @FXML public Label UsernameLabel;
 
-    @FXML
-    public Label PasswordLabel;
+    /** password label */
+    @FXML public Label PasswordLabel;
 
-    @FXML
-    public TextField UsernameText;
+    /** username textbox */
+    @FXML public TextField UsernameText;
 
-    @FXML
-    public TextField PasswordText;
+    /** password textbox */
+    @FXML public TextField PasswordText;
 
-    @FXML
-    public Label regionCode;
+    /** region code label */
+    @FXML public Label regionCode;
 
     interface getTimeZoneLambda {
         String getTimeZone(ZoneId z);
@@ -83,6 +87,7 @@ public class LoginScreen implements Initializable {
     /**
      * This method runs the login event
      * @param actionEvent when the button is clicked
+     * @throws IOException error
      */
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
 

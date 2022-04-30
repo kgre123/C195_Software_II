@@ -11,31 +11,35 @@ import javafx.scene.Parent;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * @author Kyle Green
+ * This is the report view controller
+ */
 public class ReportView {
 
-    @FXML
-    public Label report1Label;
+    /** type and month report label */
+    @FXML public Label report1Label;
 
-    @FXML
-    public Label report2Label;
+    /** contact report label */
+    @FXML public Label report2Label;
 
-    @FXML
-    public Label report3Label;
+    /** customer report label */
+    @FXML public Label report3Label;
 
-    @FXML
-    public Button report1Button;
+    /** type and month report button */
+    @FXML public Button report1Button;
 
-    @FXML
-    public Button report2Button;
+    /** contact report button */
+    @FXML public Button report2Button;
 
-    @FXML
-    public Button report3Button;
+    /** customer report button */
+    @FXML public Button report3Button;
 
-    @FXML
-    public Button backButton;
+    /** back button */
+    @FXML public Button backButton;
 
-    @FXML
-    public Button report1Button2;
+    /** button for combined type and month report */
+    @FXML public Button report1Button2;
 
     /**
      * This method goes to the first report

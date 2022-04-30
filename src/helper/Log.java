@@ -10,6 +10,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+/**
+ * @author Kyle Green
+ * This is the class that creates the log file for login attempts
+ */
 public class Log {
 
     /**

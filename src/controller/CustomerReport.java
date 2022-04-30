@@ -20,43 +20,47 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the customer report controller
+ */
 public class CustomerReport implements Initializable {
 
-    @FXML
-    public TableView<Appointment> customerTable;
+    /** customer table */
+    @FXML public TableView<Appointment> customerTable;
 
-    @FXML
-    public TableColumn<Appointment, Integer> appointmentIdColumn;
+    /** appointment id column */
+    @FXML public TableColumn<Appointment, Integer> appointmentIdColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> appointmentTitleColumn;
+    /** appointment title column */
+    @FXML public TableColumn<Appointment, String> appointmentTitleColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> appointmentTypeColumn;
+    /** appointment type column */
+    @FXML public TableColumn<Appointment, String> appointmentTypeColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> appointmentDescriptionColumn;
+    /** appointment description column */
+    @FXML public TableColumn<Appointment, String> appointmentDescriptionColumn;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> appointmentStartColumn;
+    /** appointment start column */
+    @FXML public TableColumn<Appointment, Timestamp> appointmentStartColumn;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> appointmentEndColumn;
+    /** appointment end column */
+    @FXML public TableColumn<Appointment, Timestamp> appointmentEndColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> contactIdColumn;
+    /** contact id column */
+    @FXML public TableColumn<Appointment, Integer> contactIdColumn;
 
-    @FXML
-    public ComboBox<Customer> customerComboBox;
+    /** customer combobox */
+    @FXML public ComboBox<Customer> customerComboBox;
 
-    @FXML
-    public Label selectCustomerLabel;
+    /** select customer label */
+    @FXML public Label selectCustomerLabel;
 
-    @FXML
-    public Button backButton;
+    /** back button */
+    @FXML public Button backButton;
 
-    @FXML
-    public Button refreshButton;
+    /** refresh button */
+    @FXML public Button refreshButton;
 
     /**
      * This method refreshes the page to update the table when the combobox is changed
@@ -69,6 +73,7 @@ public class CustomerReport implements Initializable {
     /**
      * This method returns to the reports screen
      * @param actionEvent when the button is clicked
+     * @throws IOException error
      */
     public void onActionBack(ActionEvent actionEvent) throws IOException {
 

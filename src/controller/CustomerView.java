@@ -19,51 +19,56 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the customer view controller
+ */
 public class CustomerView implements Initializable {
 
     Parent scene;
 
-    @FXML
-    public TableView<Customer> customerTable;
+    /** customer table */
+    @FXML public TableView<Customer> customerTable;
 
-    @FXML
-    public TableColumn<Customer, Integer> customerIdColumn;
+    /** customer id column */
+    @FXML public TableColumn<Customer, Integer> customerIdColumn;
 
-    @FXML
-    public TableColumn<Customer, String> nameColumn;
+    /** customer name column */
+    @FXML public TableColumn<Customer, String> nameColumn;
 
-    @FXML
-    public TableColumn<Customer, String> addressColumn;
+    /** customer address column */
+    @FXML public TableColumn<Customer, String> addressColumn;
 
-    @FXML
-    public TableColumn<Customer, String> postalCodeColumn;
+    /** customer id column */
+    @FXML public TableColumn<Customer, String> postalCodeColumn;
 
-    @FXML
-    public TableColumn<Customer, String> phoneNumberColumn;
+    /** customer phone column */
+    @FXML public TableColumn<Customer, String> phoneNumberColumn;
 
-    @FXML
-    public TableColumn<Customer, Integer> flDivisionColumn;
+    /** customer division column */
+    @FXML public TableColumn<Customer, Integer> flDivisionColumn;
 
-    @FXML
-    public TableColumn<Customer, Integer> countryDataColumn;
+    /** customer country column */
+    @FXML public TableColumn<Customer, Integer> countryDataColumn;
 
-    @FXML
-    public Button addCustomerButton;
+    /** add customer button */
+    @FXML public Button addCustomerButton;
 
-    @FXML
-    public Button modifyCustomerButton;
+    /** modify customer button */
+    @FXML public Button modifyCustomerButton;
 
-    @FXML
-    public Button deleteCustomerButton;
+    /** delete customer button */
+    @FXML public Button deleteCustomerButton;
 
-    @FXML
-    public Button exitButton;
+    /** exit button */
+    @FXML public Button exitButton;
 
-    @FXML
-    public Label customerLabel;
+    /** customer label */
+    @FXML public Label customerLabel;
 
-    @FXML
-    public Button backButton;
+    /** back button */
+    @FXML public Button backButton;
+
 
     /**
      * This initializes the customer view by filling the tables with the customer information
@@ -103,6 +108,7 @@ public class CustomerView implements Initializable {
      *
      * @param actionEvent when the button is clicked
      * @throws IOException error
+     * @throws SQLException error
      */
     public void onActionModifyCustomer(ActionEvent actionEvent) throws IOException, SQLException {
 

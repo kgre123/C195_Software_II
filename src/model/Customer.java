@@ -2,6 +2,10 @@ package model;
 
 import javafx.scene.control.Alert;
 
+/**
+ * @author Kyle Green
+ * This is the customer class file
+ */
 public class Customer {
 
     private int customerId;

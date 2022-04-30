@@ -4,6 +4,10 @@ import javafx.scene.control.Alert;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 
+/**
+ * @author Kyle Green
+ * This class converts some times to be used in other areas
+ */
 public class Conversions {
 
     /**

@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Kyle Green
+ * This is the country connection to the database
+ */
 public class DBCountry {
 
     /**
@@ -42,6 +46,7 @@ public class DBCountry {
      * This method gets a country by the specific id
      * @return returns the country
      * @param countryId the id to find the specific country
+     * @throws SQLException error
      */
     public static Country returnCountry(int countryId) throws SQLException {
 

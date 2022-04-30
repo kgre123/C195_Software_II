@@ -18,52 +18,56 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the separate type and month controller
+ */
 public class TypeMonthReport implements Initializable {
 
-    @FXML
-    public Label typeLabel;
+    /** type label */
+    @FXML public Label typeLabel;
 
-    @FXML
-    public ComboBox<String> typeCombo;
+    /** type combobox*/
+    @FXML public ComboBox<String> typeCombo;
 
-    @FXML
-    public Label monthLabel;
+    /** month label */
+    @FXML public Label monthLabel;
 
-    @FXML
-    public TableView<Appointment> monthTable;
+    /** month table */
+    @FXML public TableView<Appointment> monthTable;
 
-    @FXML
-    public TableColumn<Appointment, Integer> monthAppointmentId;
+    /** month appointment id column */
+    @FXML public TableColumn<Appointment, Integer> monthAppointmentId;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> monthStart;
+    /** month appointment start column */
+    @FXML public TableColumn<Appointment, Timestamp> monthStart;
 
-    @FXML
-    public TableColumn<Appointment, Integer> monthCustomerId;
+    /** month customer id column */
+    @FXML public TableColumn<Appointment, Integer> monthCustomerId;
 
-    @FXML
-    public TableView<Appointment> typeTable;
+    /** type table */
+    @FXML public TableView<Appointment> typeTable;
 
-    @FXML
-    public TableColumn<Appointment, Integer> typeAppointmentId;
+    /** type appointment id column */
+    @FXML public TableColumn<Appointment, Integer> typeAppointmentId;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> typeStart;
+    /** type start column */
+    @FXML public TableColumn<Appointment, Timestamp> typeStart;
 
-    @FXML
-    public TableColumn<Appointment, Integer> typeCustomerId;
+    /** type customer id column */
+    @FXML public TableColumn<Appointment, Integer> typeCustomerId;
 
-    @FXML
-    public Button backButton;
+    /** back button */
+    @FXML public Button backButton;
 
-    @FXML
-    public Button selectTypeButton;
+    /** select type button */
+    @FXML public Button selectTypeButton;
 
-    @FXML
-    public Button selectMonthButton;
+    /** select month button */
+    @FXML public Button selectMonthButton;
 
-    @FXML
-    public TextField monthText;
+    /** month textbox */
+    @FXML public TextField monthText;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

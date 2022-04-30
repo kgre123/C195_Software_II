@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author Kyle Green
+ * This is the first level division class file
+ */
 public class FirstLevelDivision {
 
     private int divisionID;

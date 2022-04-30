@@ -24,60 +24,64 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the add customer controller
+ */
 public class AddCustomer implements Initializable {
 
     Parent scene;
 
-    @FXML
-    public Label addCustomerLabel;
+    /** add customer label */
+    @FXML public Label addCustomerLabel;
 
-    @FXML
-    public Label customerIdLabel;
+    /** customer id label */
+    @FXML public Label customerIdLabel;
 
-    @FXML
-    public Label nameLabel;
+    /** customer name label */
+    @FXML public Label nameLabel;
 
-    @FXML
-    public Label addressLabel;
+    /** customer address label */
+    @FXML public Label addressLabel;
 
-    @FXML
-    public Label postalCodeLabel;
+    /** customer zip label */
+    @FXML public Label postalCodeLabel;
 
-    @FXML
-    public Label phoneNumberLabel;
+    /** customer phone number label */
+    @FXML public Label phoneNumberLabel;
 
-    @FXML
-    public Label flDivisionLabel;
+    /** customer division label */
+    @FXML public Label flDivisionLabel;
 
-    @FXML
-    public Label countryDataLabel;
+    /** customer country label */
+    @FXML public Label countryDataLabel;
 
-    @FXML
-    public TextField customerIdText;
+    /** customer id textbox */
+    @FXML public TextField customerIdText;
 
-    @FXML
-    public TextField nameText;
+    /** customer name textbox */
+    @FXML public TextField nameText;
 
-    @FXML
-    public TextField addressText;
+    /** customer address textbox */
+    @FXML public TextField addressText;
 
-    @FXML
-    public TextField postalCodeText;
+    /** customer zip textbox */
+    @FXML public TextField postalCodeText;
 
-    @FXML
-    public TextField phoneNumberText;
+    /** customer phone textbox */
+    @FXML public TextField phoneNumberText;
 
-    @FXML
-    public ComboBox<FirstLevelDivision> flDivisionComboBox;
+    /** customer division combobox */
+    @FXML public ComboBox<FirstLevelDivision> flDivisionComboBox;
 
-    @FXML
-    public ComboBox<Country> countryDataComboBox;
+    /** customer country combobox */
+    @FXML public ComboBox<Country> countryDataComboBox;
 
-    @FXML
-    public Button addButton;
+    /** add customer button */
+    @FXML public Button addButton;
 
-    @FXML
-    public Button cancelButton;
+    /** cancel button*/
+    @FXML public Button cancelButton;
 
 
     @Override
@@ -155,6 +159,7 @@ public class AddCustomer implements Initializable {
     /**
      * This method filters the division combobox based on the country selected
      * @param actionEvent event
+     * @throws SQLException error
      */
     public void onCountryCombo(ActionEvent actionEvent) throws SQLException {
 

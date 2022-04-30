@@ -6,6 +6,10 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
+/**
+ * @author Kyle Green
+ * This is the customer connection to the database
+ */
 public class DBCustomer {
 
     /**

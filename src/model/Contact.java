@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author Kyle Green
+ * This is the contact class file
+ */
 public class Contact {
 
     private int contactId;

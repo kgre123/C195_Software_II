@@ -3,6 +3,10 @@ package model;
 import javafx.scene.control.Alert;
 import java.util.Locale;
 
+/**
+ * @author Kyle Green
+ * This is the user class file
+ */
 public class User {
 
     private int userId;

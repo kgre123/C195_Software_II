@@ -26,5 +26,6 @@
     <orderEntry type="library" name="mysql.connector.java" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.25" level="project" />
     <orderEntry type="library" name="javafx-swt1" level="project" />
+    <orderEntry type="library" name="javafx-swt" level="project" />
   </component>
 </module>

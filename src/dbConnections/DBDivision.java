@@ -8,6 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Kyle Green
+ * This is the first level division connection to the database
+ */
 public class DBDivision {
 
     /**
@@ -42,6 +46,7 @@ public class DBDivision {
      * This method selects the id and name of a division from the database
      * @param divisionId the divisionId that is being used as a parameter
      * @return returns the division id and name
+     * @throws SQLException error
      */
     public static FirstLevelDivision returnDivision(int divisionId) throws SQLException {
 
@@ -70,6 +75,7 @@ public class DBDivision {
      * This method returns the divisions based on the countryId
      * @param countryId the countryId is being referenced to return the divisions
      * @return returns the observable list
+     * @throws SQLException error
      */
     public static ObservableList<FirstLevelDivision> returnDivisionByCountry(int countryId) throws SQLException {
 

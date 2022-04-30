@@ -20,99 +20,103 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the appointment view controller
+ */
 public class AppointmentView implements Initializable {
 
     Parent scene;
 
-    @FXML
-    public Button addButton;
+    /** add button */
+    @FXML public Button addButton;
 
-    @FXML
-    public Button updateButton;
+    /** update button */
+    @FXML public Button updateButton;
 
-    @FXML
-    public Button deleteButton;
+    /** delete button */
+    @FXML public Button deleteButton;
 
-    @FXML
-    public Button exitButton;
+    /** exit button */
+    @FXML public Button exitButton;
 
-    @FXML
-    public Label appointmentsLabel;
+    /** appointments label */
+    @FXML public Label appointmentsLabel;
 
-    @FXML
-    public Tab weeklyAppointmentsTab;
+    /** weekly appointments tab */
+    @FXML public Tab weeklyAppointmentsTab;
 
-    @FXML
-    public TableView<Appointment> weeklyAppointmentTable;
+    /** weekly appointments table */
+    @FXML public TableView<Appointment> weeklyAppointmentTable;
 
-    @FXML
-    public TableColumn<Appointment, Integer> weeklyAppointmentIdColumn;
+    /** appointment id column */
+    @FXML public TableColumn<Appointment, Integer> weeklyAppointmentIdColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> weeklyTitleColumn;
+    /** appointment title column */
+    @FXML public TableColumn<Appointment, String> weeklyTitleColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> weeklyDescriptionColumn;
+    /** appointment description column */
+    @FXML public TableColumn<Appointment, String> weeklyDescriptionColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> weeklyLocationColumn;
+    /** appointment location column */
+    @FXML public TableColumn<Appointment, String> weeklyLocationColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> weeklyContactColumn;
+    /** appointment contact column */
+    @FXML public TableColumn<Appointment, Integer> weeklyContactColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> weeklyTypeColumn;
+    /** appointment type column */
+    @FXML public TableColumn<Appointment, String> weeklyTypeColumn;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> weeklyStartColumn;
+    /** appointment start column */
+    @FXML public TableColumn<Appointment, Timestamp> weeklyStartColumn;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> weeklyEndColumn;
+    /** appointment end column */
+    @FXML public TableColumn<Appointment, Timestamp> weeklyEndColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> weeklyCustomerIdColumn;
+    /** customer id column */
+    @FXML public TableColumn<Appointment, Integer> weeklyCustomerIdColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> weeklyUserIdColumn;
+    /** user id column */
+    @FXML public TableColumn<Appointment, Integer> weeklyUserIdColumn;
 
-    @FXML
-    public Tab monthlyAppointmentsTab;
+    /** monthly appointments tab */
+    @FXML public Tab monthlyAppointmentsTab;
 
-    @FXML
-    public TableView<Appointment> monthlyAppointmentTable;
+    /** monthly appointments table */
+    @FXML public TableView<Appointment> monthlyAppointmentTable;
 
-    @FXML
-    public TableColumn<Appointment, Integer> monthlyAppointmentIdColumn;
+    /** appointment id column */
+    @FXML public TableColumn<Appointment, Integer> monthlyAppointmentIdColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> monthlyTitleColumn;
+    /** appointment title column */
+    @FXML public TableColumn<Appointment, String> monthlyTitleColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> monthlyDescriptionColumn;
+    /** appointment description column */
+    @FXML public TableColumn<Appointment, String> monthlyDescriptionColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> monthlyLocationColumn;
+    /** appointment location column */
+    @FXML public TableColumn<Appointment, String> monthlyLocationColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> monthlyContactColumn;
+    /** appointment contact column */
+    @FXML public TableColumn<Appointment, Integer> monthlyContactColumn;
 
-    @FXML
-    public TableColumn<Appointment, String> monthlyTypeColumn;
+    /** appointment type column */
+    @FXML public TableColumn<Appointment, String> monthlyTypeColumn;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> monthlyStartColumn;
+    /** appointment start column */
+    @FXML public TableColumn<Appointment, Timestamp> monthlyStartColumn;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> monthlyEndColumn;
+    /** appointment end column */
+    @FXML public TableColumn<Appointment, Timestamp> monthlyEndColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> monthlyCustomerIdColumn;
+    /** customer id column */
+    @FXML public TableColumn<Appointment, Integer> monthlyCustomerIdColumn;
 
-    @FXML
-    public TableColumn<Appointment, Integer> monthlyUserIdColumn;
+    /** user id column */
+    @FXML public TableColumn<Appointment, Integer> monthlyUserIdColumn;
 
-    @FXML
-    public Button backButton;
+    /** back button */
+    @FXML public Button backButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -161,6 +165,7 @@ public class AppointmentView implements Initializable {
      *
      * @param actionEvent when the button is clicked
      * @throws IOException error
+     * @throws SQLException error
      */
     public void OnActionUpdateAppointment(ActionEvent actionEvent) throws IOException, SQLException {
 

@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Kyle Green
+ * This is the contact connection to the database
+ */
 public class DBContact {
 
     /**
@@ -40,6 +44,7 @@ public class DBContact {
      * This method returns a contact based on the contact id
      * @return returns the contact
      * @param contactId the contact to be found
+     * @throws SQLException error
      */
     public static Contact returnContact(int contactId) throws SQLException {
 

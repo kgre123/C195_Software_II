@@ -28,91 +28,94 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * @author Kyle Green
+ * This is the add appointment controller
+ */
 public class AddAppointment implements Initializable {
 
     Parent scene;
 
-    @FXML
-    public Label addAppointmentLabel;
+    /** add appointment label */
+    @FXML public Label addAppointmentLabel;
 
-    @FXML
-    public Label appointmentIdLabel;
+    /** appointment id label */
+    @FXML public Label appointmentIdLabel;
 
-    @FXML
-    public Label titleLabel;
+    /** appointment title label */
+    @FXML public Label titleLabel;
 
-    @FXML
-    public Label descriptionLabel;
+    /** appointment description label */
+    @FXML public Label descriptionLabel;
 
-    @FXML
-    public Label locationLabel;
+    /** appointment location label */
+    @FXML public Label locationLabel;
 
-    @FXML
-    public Label contactLabel;
+    /** appointment contact label */
+    @FXML public Label contactLabel;
 
-    @FXML
-    public Label typeLabel;
+    /** appointment type label */
+    @FXML public Label typeLabel;
 
-    @FXML
-    public Label customerIdLabel;
+    /** customer id label */
+    @FXML public Label customerIdLabel;
 
-    @FXML
-    public Label userIdLabel;
+    /** user id label */
+    @FXML public Label userIdLabel;
 
-    @FXML
-    public TextField appointmentIdText;
+    /** appointment id textbox */
+    @FXML public TextField appointmentIdText;
 
-    @FXML
-    public TextField titleText;
+    /** appointment title textbox*/
+    @FXML public TextField titleText;
 
-    @FXML
-    public TextField descriptionText;
+    /** appointment description textbox */
+    @FXML public TextField descriptionText;
 
-    @FXML
-    public TextField locationText;
+    /** appointment textbox */
+    @FXML public TextField locationText;
 
-    @FXML
-    public TextField typeText;
+    /** appointment type textbox */
+    @FXML public TextField typeText;
 
-    @FXML
-    public TextField customerIdText;
+    /** customer id textbox */
+    @FXML public TextField customerIdText;
 
-    @FXML
-    public TextField userIdText;
+    /** user id textbox */
+    @FXML public TextField userIdText;
 
-    @FXML
-    public ComboBox<Contact> contactComboBox;
+    /** appointment contact combobox*/
+    @FXML public ComboBox<Contact> contactComboBox;
 
-    @FXML
-    public Button addButton;
+    /** appointment add button */
+    @FXML public Button addButton;
 
-    @FXML
-    public Button cancelButton;
+    /** cancel button */
+    @FXML public Button cancelButton;
 
-    @FXML
-    public Label startDateLabel;
+    /** appointment start date label */
+    @FXML public Label startDateLabel;
 
-    @FXML
-    public Label endDateLabel;
+    /** appointment end date label */
+    @FXML public Label endDateLabel;
 
-    @FXML
-    public Label startTimeLabel;
+    /** appointment start time label */
+    @FXML public Label startTimeLabel;
 
-    @FXML
-    public Label endTimeLabel;
+    /** appointment end time label */
+    @FXML public Label endTimeLabel;
 
-    @FXML
-    public TextField startDateText;
+    /** appointment start date textbox */
+    @FXML public TextField startDateText;
 
-    @FXML
-    public TextField endDateText;
+    /** appointment end date textbox */
+    @FXML public TextField endDateText;
 
-    @FXML
-    public TextField startTimeText;
+    /** appointment start time textbox */
+    @FXML public TextField startTimeText;
 
-    @FXML
-    public TextField endTimeText;
-
+    /** appointment end time textbox */
+    @FXML public TextField endTimeText;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -292,7 +295,4 @@ public class AddAppointment implements Initializable {
         stage.show();
     }
 
-    public static boolean checkOverlappingAppointments(){
-        return true;
-    }
 }

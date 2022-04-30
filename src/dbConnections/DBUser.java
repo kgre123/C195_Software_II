@@ -4,6 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Kyle Green
+ * This is the user connection to the database
+ */
 public class DBUser {
 
     static String currentUser;
@@ -12,6 +16,7 @@ public class DBUser {
      * This method collects the username and password for login
      * @param username the username checked for login
      * @param password the password checked for login
+     * @return boolean value of the login
      */
     public static boolean userLogin(String username, String password){
 

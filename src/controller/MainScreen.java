@@ -14,27 +14,31 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the main screen controller
+ */
 public class MainScreen implements Initializable {
 
-    @FXML
-    public Button reportsButton;
+    /** reports button */
+    @FXML public Button reportsButton;
 
     Parent scene;
 
-    @FXML
-    public Label welcomeLabel;
+    /** welcome label */
+    @FXML public Label welcomeLabel;
 
-    @FXML
-    public Button customerButton;
+    /** customer button */
+    @FXML public Button customerButton;
 
-    @FXML
-    public Button appointmentButton;
+    /** uappointments button */
+    @FXML public Button appointmentButton;
 
-    @FXML
-    public Label instructionLabel;
+    /** instructions label */
+    @FXML public Label instructionLabel;
 
-    @FXML
-    public Button exitButton;
+    /** exit button */
+    @FXML public Button exitButton;
 
 
     /**

@@ -18,37 +18,41 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * @author Kyle Green
+ * This is the type and month combined report controller
+ */
 public class TypeMonthComboReport implements Initializable {
 
-    @FXML
-    public Label typeLabel;
+    /** type label */
+    @FXML public Label typeLabel;
 
-    @FXML
-    public ComboBox<String> typeCombo;
+    /** type combobox*/
+    @FXML public ComboBox<String> typeCombo;
 
-    @FXML
-    public Label monthLabel;
+    /** month label */
+    @FXML public Label monthLabel;
 
-    @FXML
-    public TextField monthText;
+    /** month textbox */
+    @FXML public TextField monthText;
 
-    @FXML
-    public TableView<Appointment> typeMonthTable;
+    /** type month table */
+    @FXML public TableView<Appointment> typeMonthTable;
 
-    @FXML
-    public TableColumn<Appointment, Integer> typeAppointmentId;
+    /** type appointment id column */
+    @FXML public TableColumn<Appointment, Integer> typeAppointmentId;
 
-    @FXML
-    public TableColumn<Appointment, Timestamp> typeStart;
+    /** type start column */
+    @FXML public TableColumn<Appointment, Timestamp> typeStart;
 
-    @FXML
-    public TableColumn<Appointment, Integer> typeCustomerId;
+    /** type customer id column */
+    @FXML public TableColumn<Appointment, Integer> typeCustomerId;
 
-    @FXML
-    public Button backButton;
+    /** back button */
+    @FXML public Button backButton;
 
-    @FXML
-    public Button searchButton;
+    /** search button */
+    @FXML public Button searchButton;
 
     public void onTypeCombo(ActionEvent actionEvent) {
     }
