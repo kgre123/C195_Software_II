@@ -85,6 +85,7 @@ public class TypeMonthReport implements Initializable {
     /**
      * This method returns to the previous screen
      * @param actionEvent event
+     * @throws IOException error
      */
     public void onActionBack(ActionEvent actionEvent) throws IOException {
 

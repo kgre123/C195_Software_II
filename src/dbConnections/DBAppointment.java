@@ -10,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 public class DBAppointment {
@@ -270,7 +266,7 @@ public class DBAppointment {
     /**
      * This method checks the next 15 minutes for an appointment
      */
-    public static ObservableList<String> appointmentCheck(){
+    public static void appointmentCheck(){
 
         ObservableList<String> alist = FXCollections.observableArrayList();
 
@@ -294,8 +290,7 @@ public class DBAppointment {
 
                 alist.add(appointment);
 
-
-            }
+                }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -305,7 +300,6 @@ public class DBAppointment {
         else {
             Log.noUpcomingAppointment();
         }
-        return alist;
     }
 
     /**
@@ -412,4 +406,40 @@ public class DBAppointment {
         }
         return alist;
     }
+
+    /**
+     * This method returns a list of appointments by the month
+     * @param month that the appointments are for
+     * @return returns a list of appointments by the month
+     */
+    public static ObservableList<Appointment> getAppointmentsByTypeMonth(String type, int month){
+
+        ObservableList<Appointment> alist = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Appointment_ID, Start, Customer_ID from appointments WHERE Type = ? AND MONTH(Start) = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setString(1, type);
+            ps.setInt(2, month);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                Timestamp startDate = rs.getTimestamp("Start");
+                int customerId = rs.getInt("Customer_ID");
+
+                Appointment a = new Appointment(appointmentId, startDate, customerId);
+
+
+                alist.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alist;
+    }
+
 }

@@ -34,6 +34,9 @@ public class ReportView {
     @FXML
     public Button backButton;
 
+    @FXML
+    public Button report1Button2;
+
     /**
      * This method goes to the first report
      * @param actionEvent event
@@ -79,6 +82,18 @@ public class ReportView {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Object scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainScreen.fxml")));
         stage.setScene(new Scene ((Parent)scene));
+        stage.show();
+    }
+
+    /**
+     * This method goes to the combined type and month report
+     * @param actionEvent event
+     */
+    public void onActionGenTMCombo(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/TypeMonthComboReport.fxml")));
+        stage.setScene(new Scene(scene));
         stage.show();
     }
 }

@@ -2,7 +2,6 @@ package controller;
 
 import dbConnections.DBAppointment;
 import dbConnections.DBUser;
-import helper.Conversions;
 import helper.Log;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +16,7 @@ import javafx.stage.Stage;
 import model.User;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -47,10 +47,25 @@ public class LoginScreen implements Initializable {
     @FXML
     public Label regionCode;
 
+    interface getTimeZoneLambda {
+        String getTimeZone(ZoneId z);
+    }
+    /**
+     * This method initializes the login screen
+     * @param url the url
+     * @param resourceBundle the resource bundle used
+     * The lambda here is to get the timezone ID to a string. It helped cut down on the lines of code and everything
+     * with it is contained in one class. It makes things easier to follow.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        regionCode.setText(Conversions.getTimeZone());
+        /* This is one of the lambdas that I am using.
+        This particular lambda is helpful because it cuts down on the lines of code that I had to write.
+        I changed to this lambda from a method call in another class and now everything is contained in this controller
+         */
+        getTimeZoneLambda myLambda = (ZoneId z) -> z.toString();
+        regionCode.setText(myLambda.getTimeZone(ZoneId.systemDefault()));
 
         ResourceBundle rb = ResourceBundle.getBundle("properties/Lang", Locale.getDefault());
 

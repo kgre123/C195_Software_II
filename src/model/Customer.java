@@ -136,6 +136,9 @@ public class Customer {
         return customerName;
     }
 
+    /**
+     * creates an alert for when no item was selected
+     */
     public static void itemSelectError(){
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -144,6 +147,9 @@ public class Customer {
         alert.showAndWait();
     }
 
+    /**
+     * creates an alert for when the customer has appointments, therefore they cannot be deleted
+     */
     public static void customerAppointmentError(){
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -151,4 +157,55 @@ public class Customer {
         alert.setContentText("You must delete all appointments for the customer before deleting the customer.");
         alert.showAndWait();
     }
+
+    /**
+     * creates an alert for when the customer has overlapping appointments
+     */
+    public static void customerOverlappingAppointments(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Overlapping Appointment");
+        alert.setContentText("A customer cannot have overlapping appointments. Please choose a new appointment time!");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the name is left empty
+     */
+    public static void emptyName() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Customer Name");
+        alert.setContentText("Please enter a customer name.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the address is left empty
+     */
+    public static void emptyAddress() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Customer Address");
+        alert.setContentText("Please enter a customer address.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the zip code is left empty
+     */
+    public static void emptyZip() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Customer Postal Code");
+        alert.setContentText("Please enter a customer postal code.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the phone number is left empty
+     */
+    public static void emptyPhoneNumber() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Customer Phone Number");
+        alert.setContentText("Please enter a customer phone number.");
+        alert.showAndWait();
+    }
+
 }

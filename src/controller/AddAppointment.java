@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
+import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -132,54 +133,139 @@ public class AddAppointment implements Initializable {
         try{
             Appointment appointment = new Appointment();
             appointment.setTitle(titleText.getText());
-            appointment.setDescription(descriptionText.getText());
-            appointment.setLocation(locationText.getText());
-            appointment.setType(typeText.getText());
+            if(titleText.getText().isEmpty()){
+                Appointment.emptyTitle();
+                return;
+            }
 
-            //getting the dates ready to check times
+            appointment.setDescription(descriptionText.getText());
+            if(descriptionText.getText().isEmpty()){
+                Appointment.emptyDescription();
+                return;
+            }
+
+            appointment.setLocation(locationText.getText());
+            if(locationText.getText().isEmpty()){
+                Appointment.emptyLocation();
+                return;
+            }
+            appointment.setType(typeText.getText());
+            if(typeText.getText().isEmpty()){
+                Appointment.emptyType();
+                return;
+            }
+
+            try{
+                appointment.setCustomerId(Integer.parseInt(customerIdText.getText()));
+            }
+            catch(NumberFormatException e){
+                Appointment.invalidCustomerId();
+                return;
+            }
+
+
             String startDate = startDateText.getText();
+            if(startDateText.getText().isEmpty()){
+                Appointment.emptyStartDate();
+                return;
+            }
+
             String startTime = startTimeText.getText();
+            if(startTimeText.getText().isEmpty()){
+                Appointment.emptyStartTime();
+                return;
+            }
+
+
+            String endDate = endDateText.getText();
+            if(endDateText.getText().isEmpty()){
+                Appointment.emptyEndDate();
+                return;
+            }
+
+            String endTime = endTimeText.getText();
+            if(endTimeText.getText().isEmpty()){
+                Appointment.emptyEndTime();
+                return;
+            }
+
+            //getting the dates ready to move to database
+            ObservableList<Appointment> list = DBAppointment.getAppointmentsByCustomer(Integer.parseInt(customerIdText.getText()));
             String fullStart = startDate + " " + startTime;
             Timestamp start = Timestamp.valueOf(fullStart);
-            String endDate = endDateText.getText();
-            String endTime = endTimeText.getText();
             String fullEnd = endDate + " " + endTime;
             Timestamp end = Timestamp.valueOf(fullEnd);
 
-            LocalDate businessOpenDate = LocalDate.of(2022, 04, 27);
-            LocalTime businessOpenTime = LocalTime.of(8,00);
-            ZoneId easternZoneId = ZoneId.of("America/Indiana/Vevay");
-            ZonedDateTime openZDT = ZonedDateTime.of(businessOpenDate, businessOpenTime, easternZoneId);
+            //getting the times ready to compare
+            LocalDate userStartDate = LocalDate.parse(startDate);
+            LocalTime userStartTime = LocalTime.parse(startTime);
+            LocalDate userEndDate = LocalDate.parse(endDate);
+            LocalTime userEndTime = LocalTime.parse(endTime);
+            ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
+            ZonedDateTime startZDT = ZonedDateTime.of(userStartDate, userStartTime, localZoneId);
+            ZonedDateTime endZDT = ZonedDateTime.of(userEndDate, userEndTime, localZoneId);
+            //System.out.println(startZDT);
+            //System.out.println(endZDT);
 
-            LocalDate businessCloseDate = LocalDate.of(2022, 04, 27);
+            //getting the zonedatetime for open and close
+            ZoneId easternZoneId = ZoneId.of("America/Indiana/Vevay");
+            LocalDate businessOpenDate = LocalDate.parse(startDate);
+            LocalTime businessOpenTime = LocalTime.of(8,00);
+            ZonedDateTime openZDT = ZonedDateTime.of(businessOpenDate, businessOpenTime, easternZoneId);
+            LocalDate businessCloseDate = LocalDate.parse(startDate);
             LocalTime businessCloseTime = LocalTime.of(22,00);
             ZonedDateTime closeZDT = ZonedDateTime.of(businessCloseDate, businessCloseTime, easternZoneId);
 
-            ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
+            //changing open and close times to current timezone of system
             ZonedDateTime openToLocalZDT = openZDT.withZoneSameInstant(localZoneId);
-            Timestamp openTimestamp = Timestamp.from(openToLocalZDT.toInstant());
+            //System.out.println(openToLocalZDT);
             ZonedDateTime closeToLocalZDT = closeZDT.withZoneSameInstant(localZoneId);
-            Timestamp closeTimestamp = Timestamp.from(closeToLocalZDT.toInstant());
+            //System.out.println(closeToLocalZDT);
 
-            LocalTime startHours = start.toLocalDateTime().toLocalTime();
-            LocalTime openHours = openTimestamp.toLocalDateTime().toLocalTime();
-            LocalTime endHours = end.toLocalDateTime().toLocalTime();
-            LocalTime closeHours = closeTimestamp.toLocalDateTime().toLocalTime();
+            //getting the local date times to compare for the start and end of appointment
+            LocalDateTime newStart = start.toLocalDateTime();
+            LocalDateTime newEnd = end.toLocalDateTime();
 
-            int startComparison = startHours.compareTo(openHours);
-            int endComparison = endHours.compareTo(closeHours);
-            if(startComparison >= 0 && endComparison <= 0) {
-                appointment.setStartDate(start);
-                appointment.setEndDate(end);
+            //checking for overlapping appointments for a specific customer
+            for(Appointment a: list){
+                LocalDateTime startA = a.getStartDate().toLocalDateTime();
+                //System.out.println(startA);
+                LocalDateTime endA = a.getEndDate().toLocalDateTime();
+                //System.out.println(endA);
+                if(newStart.isAfter(startA) && newStart.isBefore(endA)){
+                    Customer.customerOverlappingAppointments();
+                    return;
+                } else if(newEnd.isAfter(startA) && newEnd.isBefore(endA)){
+                    Customer.customerOverlappingAppointments();
+                    return;
+                }
+            }
+            //making sure that the proposed appointment times are during business hours and that the start is before the end
+            if(((startZDT.isAfter(openToLocalZDT)) || (startZDT.equals(openToLocalZDT))) && ((endZDT.isBefore(closeToLocalZDT)) || (endZDT.equals(closeToLocalZDT)))){
+                if(start.before(end)) {
+                    appointment.setStartDate(start);
+                    appointment.setEndDate(end);
+                }
+                else{
+                    Appointment.startBeforeEnd();
+                    return;
+                }
+
             } else {
                 Conversions.invalidHours();
                 return;
             }
 
-            appointment.setCustomerId(Integer.parseInt(customerIdText.getText()));
-            appointment.setUserId(Integer.parseInt(userIdText.getText()));
-            appointment.setContactId(contactComboBox.getValue().getContactId());
+            try{
+                appointment.setUserId(Integer.parseInt(userIdText.getText()));
+            }
+            catch(NumberFormatException e){
+                Appointment.invalidUserId();
+                return;
+            }
 
+
+            appointment.setContactId(contactComboBox.getValue().getContactId());
             DBAppointment.addAppointment(appointment);
 
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -204,5 +290,9 @@ public class AddAppointment implements Initializable {
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentView.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
+    }
+
+    public static boolean checkOverlappingAppointments(){
+        return true;
     }
 }

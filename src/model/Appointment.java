@@ -1,5 +1,6 @@
 package model;
 
+import javafx.scene.control.Alert;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 
@@ -238,4 +239,111 @@ public class Appointment {
         this.contactId = contactId;
     }
 
+    /**
+     * creates an alert for when the title is left empty
+     */
+    public static void emptyTitle(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty Title Field");
+        alert.setContentText("The title field must have a value.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the description is left empty
+     */
+    public static void emptyDescription(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty Description Field");
+        alert.setContentText("The description field must have a value.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the location is left empty
+     */
+    public static void emptyLocation(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty Location Field");
+        alert.setContentText("The location field must have a value.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the type is left empty
+     */
+    public static void emptyType(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty Type Field");
+        alert.setContentText("The type field must have a value.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the customer id is invalid
+     */
+    public static void invalidCustomerId(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Customer ID Field");
+        alert.setContentText("Please enter a valid number for the Customer ID  field.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the start date is left empty
+     */
+    public static void emptyStartDate(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty Start Date Field");
+        alert.setContentText("The start date field must have a value.");
+        alert.showAndWait();
+    }
+    /**
+     * creates an alert for when the start time is left empty
+     */
+    public static void emptyStartTime(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty Start Time Field");
+        alert.setContentText("The Customer ID field must have a value.");
+        alert.showAndWait();
+    }
+    /**
+     * creates an alert for when the end date is left empty
+     */
+    public static void emptyEndDate(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty End Date Field");
+        alert.setContentText("The end date field must have a value.");
+        alert.showAndWait();
+    }
+    /**
+     * creates an alert for when the customer id is left empty
+     */
+    public static void emptyEndTime(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty End Time Field");
+        alert.setContentText("The end time field must have a value.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the user id is invalid
+     */
+    public static void invalidUserId(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid User ID Field");
+        alert.setContentText("The User ID field must contain a valid number.");
+        alert.showAndWait();
+    }
+
+    /**
+     * creates an alert for when the start time is not before the end time
+     */
+    public static void startBeforeEnd() {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Start and End Time");
+        alert.setContentText("The start time must be before the end time.");
+        alert.showAndWait();
+    }
 }

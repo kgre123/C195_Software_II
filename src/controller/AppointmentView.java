@@ -211,13 +211,19 @@ public class AppointmentView implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Delete");
-            alert.setContentText("Are you sure that you would like to delete the selected item?");
+            alert.setContentText("Are you sure that you would like to delete the selected appointment?");
 
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent()) {
 
                 if (result.get() == ButtonType.OK) {
+
+                    Alert deleted = new Alert(Alert.AlertType.INFORMATION);
+                    deleted.setTitle("Appointment Deleted");
+                    deleted.setContentText("Appointment ID: " + weeklyAppointmentTable.getSelectionModel().getSelectedItem().getAppointmentId() + " | Type: " + weeklyAppointmentTable.getSelectionModel().getSelectedItem().getType() + " has been deleted!");
+                    deleted.showAndWait();
+
                     DBAppointment.deleteAppointment(weeklyAppointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
                 }
                 else {
@@ -234,13 +240,18 @@ public class AppointmentView implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Delete");
-            alert.setContentText("Are you sure that you would like to delete the selected item?");
+            alert.setContentText("Are you sure that you would like to delete the selected appointment?");
 
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent()) {
 
                 if (result.get() == ButtonType.OK) {
+                    Alert deleted = new Alert(Alert.AlertType.INFORMATION);
+                    deleted.setTitle("Appointment Deleted");
+                    deleted.setContentText("Appointment ID: " + monthlyAppointmentTable.getSelectionModel().getSelectedItem().getAppointmentId() + " | Type: " + monthlyAppointmentTable.getSelectionModel().getSelectedItem().getType() + " has been deleted!");
+                    deleted.showAndWait();
+
                     DBAppointment.deleteAppointment(monthlyAppointmentTable.getSelectionModel().getSelectedItem().getAppointmentId());
                 }
                 else {

@@ -2,20 +2,9 @@ package helper;
 
 import javafx.scene.control.Alert;
 import java.text.SimpleDateFormat;
-import java.time.*;
 import java.sql.Timestamp;
 
 public class Conversions {
-
-    /**
-     * This method gets the zoneId of the user's computer
-     * @return returns the string of the zoneId of the system
-     */
-    public static String getTimeZone(){
-
-        ZoneId zone = ZoneId.systemDefault();
-        return zone.toString();
-    }
 
     /**
      * This method returns the current time

@@ -105,10 +105,28 @@ public class AddCustomer implements Initializable {
 
         try{
             Customer customer = new Customer();
+
             customer.setCustomerName(nameText.getText());
+            if(nameText.getText().isEmpty()){
+                Customer.emptyName();
+                return;
+            }
+
             customer.setCustomerAddress(addressText.getText());
+            if(addressText.getText().isEmpty()){
+                Customer.emptyAddress();
+                return;
+            }
             customer.setCustomerZip(postalCodeText.getText());
+            if(postalCodeText.getText().isEmpty()){
+                Customer.emptyZip();
+                return;
+            }
             customer.setCustomerPhone(phoneNumberText.getText());
+            if(phoneNumberText.getText().isEmpty()){
+                Customer.emptyPhoneNumber();
+                return;
+            }
             customer.setCustomerDivisionId(flDivisionComboBox.getValue().getDivisionID());
 
             DBCustomer.addCustomer(customer);
