@@ -161,7 +161,7 @@ public class UpdateAppointment implements Initializable {
             if(startDateText.getText().isEmpty()){
                 Appointment.emptyStartDate();
                 return;
-                }
+            }
 
             String startTime = startTimeText.getText();
             if(startTimeText.getText().isEmpty()){
@@ -232,10 +232,10 @@ public class UpdateAppointment implements Initializable {
                 //System.out.println(startA);
                 LocalDateTime endA = a.getEndDate().toLocalDateTime();
                 //System.out.println(endA);
-                if(newStart.isAfter(startA) && newStart.isBefore(endA) && a.getAppointmentId() != id){
+                if((newStart.isAfter(startA) && newStart.isBefore(endA) && a.getAppointmentId() != id) || newStart.isEqual(startA)){
                     Customer.customerOverlappingAppointments();
                     return;
-                } else if(newEnd.isAfter(startA) && newEnd.isBefore(endA) && a.getAppointmentId() != id){
+                } else if((newEnd.isAfter(startA) && newEnd.isBefore(endA) && a.getAppointmentId() != id) || newEnd.isEqual(endA)) {
                     Customer.customerOverlappingAppointments();
                     return;
                 }

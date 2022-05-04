@@ -235,10 +235,10 @@ public class AddAppointment implements Initializable {
                 //System.out.println(startA);
                 LocalDateTime endA = a.getEndDate().toLocalDateTime();
                 //System.out.println(endA);
-                if(newStart.isAfter(startA) && newStart.isBefore(endA)){
+                if((newStart.isAfter(startA) && newStart.isBefore(endA)) || newStart.isEqual(startA)){
                     Customer.customerOverlappingAppointments();
                     return;
-                } else if(newEnd.isAfter(startA) && newEnd.isBefore(endA)){
+                } else if((newEnd.isAfter(startA) && newEnd.isBefore(endA)) || newEnd.isEqual(endA)){
                     Customer.customerOverlappingAppointments();
                     return;
                 }

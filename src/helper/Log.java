@@ -31,12 +31,12 @@ public class Log {
             boolean login = DBUser.userLogin(username, password);
 
             if(login){
-                String success = "User: " + username + " Successfully logged in at: " + LocalDateTime.now() + "\n";
+                String success = "User: " + username + "|| Successfully logged in at: " + LocalDateTime.now() + "\n";
                 bw.write(success);
             }
 
             else {
-                String failure = "User: " + username + " Failed to log in at: " + LocalDateTime.now() + "\n";
+                String failure = "User: " + username + "|| Failed to log in at: " + LocalDateTime.now() + "\n";
                 bw.write(failure);
             }
         }

@@ -15,8 +15,12 @@ The JDK used was jdk-17.0.1 and the JavaFX version that was used was javafx-jdk-
 
 Directions for the Program
 To run the program, all of the prerequisite software must be installed on the device. This includes an IDE for Java,
-mySQL workbench and all of the necessary components listed above (JDK, SDK, Connector). After that is all installed and
-the IDE is pulled up, the person would have to execute the program. The first screen would be a login screen. The username
+mySQL workbench and all of the necessary components listed above (JDK, SDK, Connector). Those have to be added to the files
+in the project structure setting in order for the project ot function properly. Also, application needs to be set as a configuration
+with the virtual machine information included to run everything effectively. The path that I used for the vm was:
+--module-path C:\Users\LabUser\Desktop\javafx-sdk-17.0.1\lib --add-modules javafx.fxml,javafx.controls,javafx.graphics
+
+After that is all installed and set up, the person would have to execute the program. The first screen would be a login screen. The username
 and password that I used for the program were both "test" without the quotation marks. After logging in, the person would
 navigate through the program by clicking the various buttons and entering in the information required. There are a lot of different
 ways that you can go through the program, and there are a lot of instructions included in the implementation of the program.
